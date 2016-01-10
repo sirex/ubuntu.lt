@@ -2,16 +2,19 @@ import re
 import tqdm
 import datetime
 import sqlalchemy as sa
+import html
 
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
+from django.db.models.signals import post_save
 
 from spirit.topic.models import Topic
 from spirit.comment.models import Comment
 from spirit.category.models import Category
 from spirit.core.utils.markdown import Markdown
 from spirit.core.utils.markdown.utils.emoji import emojis
-from spirit.core.utils.markdown.utils.quote import quotify
+from spirit.user.models import UserProfile
+from spirit.user.signals import update_or_create_user_profile
 
 User = get_user_model()
 
@@ -19,11 +22,15 @@ User = get_user_model()
 def import_categories(metadata, conn):
     forums = sa.Table('phpbb_forums', metadata, autoload=True)
 
+    Category.objects.all().delete()
+
     for row in conn.execute(forums.select()):
-        Category.objects.create(
+        category = Category.objects.create(
+            pk=row.forum_id,
             title=row.forum_name,
             description=row.forum_desc,
         )
+        yield row.forum_id, category
 
 
 def import_users(metadata, conn):
@@ -98,7 +105,12 @@ def import_users(metadata, conn):
     for row in tqdm.tqdm(conn.execute(query), total=total):
         user_type = user_type_map[row.user_user_type]
 
-        if User.objects.filter(username=row.user_username_clean).exists():
+        try:
+            user = User.objects.get(username=row.user_username)
+        except User.DoesNotExist:
+            pass
+        else:
+            yield row.user_user_id, user
             continue
 
         administrator = (user_type == 'founder') or row.role_role_name in administrator_roles
@@ -114,70 +126,48 @@ def import_users(metadata, conn):
 
         user = User.objects.create(
             password=password,
-            username=row.user_username_clean,
-            first_name=row.user_username,
+            username=row.user_username,
             email=row.user_user_email,
             last_login=lastvisit,
+            date_joined=datetime.datetime.fromtimestamp(row.user_user_regdate),
             is_active=active,
             is_staff=administrator,
             is_superuser=administrator,
         )
 
-        profile = user.st
-        profile.location = row.user_user_from
-        profile.last_seen = lastvisit
-        profile.last_ip = row.user_user_ip
-        profile.timezone = timezones.get(row.user_user_timezone, 'UTC')
-        profile.is_administrator = administrator
-        profile.is_moderator = moderator
-        profile.is_verified = True
-        profile.topic_count = conn.execute(sa.select([sa.func.count('*')], topics.c.user_id == row.user_user_id)).scalar()
-        profile.comment_count = row.user_user_posts
-        profile.save()
-
-
-def import_topics(metadata, conn):
-    users = sa.Table('phpbb_users', metadata, autoload=True)
-    topics = sa.Table('phpbb_topics', metadata, autoload=True)
-    forums = sa.Table('phpbb_forums', metadata, autoload=True)
-
-    query = (
-        sa.select([
-            topics,
-            users.c.username_clean.label('username'),
-            forums.c.forum_name,
-        ]).
-        select_from(
-            topics.
-            join(users, users.c.user_id == topics.c.topic_poster).
-            outerjoin(forums, topics.c.forum_id == forums.c.forum_id)
+        UserProfile.objects.create(
+            user=user,
+            location=row.user_user_from,
+            last_seen=lastvisit,
+            last_ip=row.user_user_ip,
+            timezone=timezones.get(row.user_user_timezone, 'UTC'),
+            is_administrator=administrator,
+            is_moderator=moderator,
+            is_verified=True,
+            topic_count=conn.execute(sa.select([sa.func.count('*')], topics.c.user_id == row.user_user_id)).scalar(),
+            comment_count=row.user_user_posts,
         )
-    )
+
+        yield row.user_user_id, user
+
+
+def import_topics(metadata, conn, forums, users):
+    topics = sa.Table('phpbb_topics', metadata, autoload=True)
+
+    query = sa.select([topics], topics.c.topic_status != 2)
 
     total = conn.execute(
         sa.select([sa.func.count('*')], topics.c.topic_status != 2)
     ).scalar()
 
     for row in tqdm.tqdm(conn.execute(query), total=total):
-        if row.topic_status == 2:  # topic is moved
-            continue
+        user = users[row.topic_poster]
+        category = forums[row.forum_id]
 
-        try:
-            user = User.objects.get(username=row.username)
-        except User.DoesNotExist:
-            print(row.username)
-            raise
-
-        try:
-            category = Category.objects.get(title=row.forum_name)
-        except User.DoesNotExist:
-            print(row.forum_name)
-            raise
-
-        Topic.objects.create(
+        yield row, Topic.objects.create(
             user=user,
             category=category,
-            title=row.topic_title,
+            title=html.unescape(row.topic_title),
             date=datetime.datetime.fromtimestamp(row.topic_time),
             last_active=datetime.datetime.fromtimestamp(row.topic_last_post_time),
             is_pinned=row.topic_type == 1,
@@ -192,17 +182,32 @@ def import_topics(metadata, conn):
 def bbcode_emoji(bbcode):
     emoji_map = {
         ':)': 'slight_smile',
+        ':|': 'neutral_face',
         ':(': 'slight_frown',
         ';)': 'wink',
         ':D': 'smile',
         ':?': 'worried',
         ':P': 'stuck_out_tongue',
+        ':-?': 'yum',
+        ';-)': 'wink',
+        ':-)': 'smiley',
+        ':-D': 'smile',
+        ':-(': 'slight_frown',
         '8-)': 'smiley',
+        ':-|': 'neutral_face',
+        ':!:': 'exclamation',
+        ':?:': 'question',
         'roll': 'smirk',
         'lol': 'smile',
         'oops': 'blush',
-        'shock': 'scream',
-        'mrgreen': 'smiling_imp',
+        'shock': 'astonished',
+        'mrgreen': 'smiley_cat',
+        'twisted': 'smiling_imp',
+        'evil': 'imp',
+        'geek': 'relieved',
+        'ugeek': 'sunglasses',
+        'arrow': 'point_right',
+        'idea': 'bulb',
     }
 
     def replace(match):
@@ -227,66 +232,198 @@ def bbcode_magic_url(bbcode):
     return re.sub(r'<!-- ([lmwe]) --><a.*? href="([^"]+)">(.*?)</a><!-- \1 -->', replace, bbcode)
 
 
-def bbcode_quote(bbcode):
-    def replace(match):
-        user = match.group(2)
-        text = match.group(4)
-        if user:
-            return quotify(text, user)
+class Context(object):
+
+    def __init__(self, env, code, name, text, params=None):
+        self.env = env
+        self.code = code
+        self.name = name
+        self.text = text
+        self.params = params
+
+    def render_quote(self):
+        lines = self.text.strip().splitlines()
+        quote = "\n> ".join(lines)
+        if self.params:
+            if self.params.startswith('=&quot;') and self.params.endswith('&quot;'):
+                user = self.params[7:-6]
+            else:
+                user = self.params.strip()
+            return '> @%s rašė:\n> %s\n' % (user, quote)
         else:
-            lines = text.splitlines()
-            quote = "\n> ".join(lines)
             return "> %s\n" % quote
-    return re.sub(r'\[quote(=&quot;(.*?)&quot;)?:([^]]+)](.*?)\[/quote:\3]', replace, bbcode, flags=re.DOTALL)
+
+    def render_code(self):
+        lang = ''
+        if self.params and self.params.startswith('='):
+            lang = self.params[1:]
+        return '```%s\n%s\n```' % (lang, self.text.strip())
+
+    def render_url(self):
+        if self.params:
+            if self.params.startswith('='):
+                url = self.params[1:]
+            else:
+                url = self.params
+            return '[%s](%s)' % (self.text, url)
+        else:
+            return self.text
+
+    def render_youtube(self):
+        return self.text
+
+    def render_img(self):
+        if self.params:
+            if self.params.startswith('='):
+                url = self.params[1:]
+            else:
+                url = self.params
+            return '![%s](%s)' % (self.text, url)
+        else:
+            return '![](%s)' % self.text
+
+    def render_attachment(self):
+        attachments = self.env.tables['attachments']
+
+        assert self.params.startswith('='), repr(self.params)
+        param = int(self.params[1:])
+
+        row = self.env.conn.execute(
+            attachments.select(sa.and_(
+                attachments.c.post_msg_id == self.env.postrow.post_id,
+                attachments.c.in_message == param,
+            ))
+        ).first()
+
+        if row is None:
+            # print('attachment error: post_msg_id = %s and in_message = %s\n%s' % (self.env.postrow.post_id, param, self.text))
+            return ''
+
+        url = 'http://www.ubuntu.lt/forum/download/file.php?id=%s' % row.attach_id
+
+        if row.mimetype.startswith('image/'):
+            return '![%s](%s)' % (row.real_filename, url)
+        else:
+            return '[%s](%s)' % (row.real_filename, url)
+
+    def render_list(self):
+        text = re.sub(r'\[/\*(:[^]]+)?]', '', self.text)
+        return re.sub(r'^\s*\[\*(:[^]]+)?]', '*', text, flags=re.MULTILINE)
+
+    def render_size(self):
+        return '**%s**' % self.text if '\n' not in self.text else self.text
+
+    def render_color(self):
+        return '**%s**' % self.text if '\n' not in self.text else self.text
+
+    def render_b(self):
+        return '**%s**' % self.text if '\n' not in self.text else self.text
+
+    def render_i(self):
+        return '*%s*' % self.text if '\n' not in self.text else self.text
+
+    def render_u(self):
+        return '*%s*' % self.text if '\n' not in self.text else self.text
+
+    def render_s(self):
+        return '~~%s~~' % self.text if '\n' not in self.text else self.text
+
+    def render_email(self):
+        return self.text
 
 
-def bbcode_to_markdown(bbcode):
+def iterbbtags(bbcode):
+    pos = 0
+    for match in re.finditer(r'\[/?([a-z]+)([^]]*)(:[a-z0-9]+)]', bbcode):
+        yield bbcode[pos:match.start()], match
+        pos = match.end()
+    yield bbcode[pos:], None
+
+
+def bbcode_tags(env, bbcode):
+    bbtags = (
+        'quote', 'code', 'url', 'youtube', 'img', 'attachment', 'list', 'size', 'color', 'b', 'i', 'u', 's', 'email',
+    )
+    stack = [Context(env, None, None, '')]
+    for text, match in iterbbtags(bbcode):
+        stack[-1].text += text
+        if match is None:
+            continue
+        tag = match.group(0)
+        name = match.group(1)
+        params = match.group(2)
+        if params == '\\':
+            stack[-1].text += tag
+            continue
+        if name not in bbtags:
+            stack[-1].text += tag
+            continue
+        if tag == '[/%s]' % stack[-1].code:
+            node = stack.pop()
+            render = getattr(node, 'render_%s' % node.name)
+            stack[-1].text += render()
+        else:
+            code = match.group(1) + (match.group(3) or '')
+            stack.append(Context(env, code, name, '', params))
+    while len(stack) > 1:
+        node = stack.pop()
+        render = getattr(node, 'render_%s' % node.name)
+        stack[-1].text += render()
+    return stack[-1].text
+
+
+def bbcode_to_markdown(env, bbcode):
+    bbcode = bbcode_tags(env, bbcode)
     bbcode = bbcode_magic_url(bbcode)
     bbcode = bbcode_emoji(bbcode)
-    bbcode = bbcode_quote(bbcode)
+    bbcode = html.unescape(bbcode)
     return bbcode
 
 
-def import_topic_posts(metadata, conn, topic, topicrow):
-    users = sa.Table('phpbb_users', metadata, autoload=True)
+class Env(object):
+    def __init__(self, metadata, conn):
+        self.metadata = metadata
+        self.conn = conn
+        self.topic = None
+        self.topicrow = None
+        self.postrow = None
+
+        self.tables = {
+            'attachments': sa.Table('phpbb_attachments', metadata, autoload=True),
+        }
+
+
+def import_topic_posts(metadata, conn, users, topic, topicrow):
+    env = Env(metadata, conn)
+    env.topic = topic
+    env.topicrow = topicrow
+
     posts = sa.Table('phpbb_posts', metadata, autoload=True)
 
-    print(topicrow.topic_title)
-
-    query = (
-        sa.select([
-            posts,
-            users.c.username_clean.label('username'),
-        ]).
-        select_from(
-            posts.
-            join(users, users.c.user_id == posts.c.poster_id)
-        ).
-        where(posts.c.topic_id == topicrow.topic_id)
-    )
-
-    Comment.objects.filter(topic=topic).delete()
+    query = sa.select([posts], posts.c.topic_id == topicrow.topic_id)
 
     for row in conn.execute(query):
+        env.postrow = row
+        user = users[row.poster_id]
+        text = None
 
         try:
-            user = User.objects.get(username=row.username)
-        except User.DoesNotExist:
-            print(row.username)
+            text = bbcode_to_markdown(env, row.post_text)
+            html = Markdown().render(text)  # noqa
+        except Exception:
+            import pprint
+            pprint.pprint(dict(topicrow))
+            pprint.pprint(dict(row))
+            print('=' * 72)
+            print(row.post_text)
+            print('-' * 72)
+            print(text)
             raise
-
-        print('=' * 72)
-        print(row.post_text)
-        text = bbcode_to_markdown(row.post_text)
-        print('-' * 72)
-        print(text)
-
-        html = Markdown().render(text)
 
         Comment.objects.create(
             user=user,
             topic=topic,
-            comment=row.post_text,
+            comment=text,
             comment_html=html,
             date=datetime.datetime.fromtimestamp(row.post_time),
             is_modified=row.post_edit_count > 0,
@@ -299,20 +436,22 @@ class Command(BaseCommand):
     help = 'Import ubuntu.lt data from phpbb.'
 
     def handle(self, *args, **options):
+        post_save.disconnect(update_or_create_user_profile, sender=User, dispatch_uid='spirit.user.signals')
+
         engine = sa.create_engine('mysql+pymysql://root@/ubuntult?charset=utf8')
         metadata = sa.MetaData(engine)
         conn = engine.connect()
 
-        # import_categories(metadata, conn)
-        # import_users(metadata, conn)
-        # import_topics(metadata, conn)
-
         topics = sa.Table('phpbb_topics', metadata, autoload=True)
-        title = 'Kokius Linux rinktis?'
-        topic = Topic.objects.get(title=title)
-        topicrow = conn.execute(
-            topics.select(topics.c.topic_title == title)
-        ).first()
-        import_topic_posts(metadata, conn, topic, topicrow)
 
-        self.stdout.write('it works')
+        forums = dict(import_categories(metadata, conn))
+        users = dict(import_users(metadata, conn))
+
+        total = conn.execute(
+            sa.select([sa.func.count('*')]).select_from(topics)
+        ).scalar()
+
+        for topicrow, topic in tqdm.tqdm(import_topics(metadata, conn, forums, users), total=total):
+            import_topic_posts(metadata, conn, users, topic, topicrow)
+
+        self.stdout.write('done.')
