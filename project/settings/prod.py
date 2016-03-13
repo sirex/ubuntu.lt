@@ -21,7 +21,7 @@ ADMINS = (('sirex', 'sirexas@gmail.com'), )
 SECRET_KEY = os.environ.get("SECRET_KEY", "35135gsdfg5sd3g5e35e1rg3w5r1g51313")
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['demo.ubuntu.lt', ]
+ALLOWED_HOSTS = ['ubuntu.lt', 'www.ubuntu.lt']
 
 DEFAULT_FROM_EMAIL = 'no-reply@ubuntu.lt'  # 'MyForum <noreply@example.com>'
 SERVER_EMAIL = DEFAULT_FROM_EMAIL  # For error notifications
