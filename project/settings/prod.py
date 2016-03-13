@@ -14,16 +14,16 @@ from .base import *
 DEBUG = False
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
-ADMINS = (('John', 'john@example.com'), )
+ADMINS = (('sirex', 'sirexas@gmail.com'), )
 
 # Secret key generator: https://djskgen.herokuapp.com/
 # You should set your key as an environ variable
-SECRET_KEY = os.environ.get("SECRET_KEY", "")
+SECRET_KEY = os.environ.get("SECRET_KEY", "35135gsdfg5sd3g5e35e1rg3w5r1g51313")
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['.example.com', ]
+ALLOWED_HOSTS = ['demo.ubuntu.lt', ]
 
-DEFAULT_FROM_EMAIL = 'webmaster@localhost'  # 'MyForum <noreply@example.com>'
+DEFAULT_FROM_EMAIL = 'sirexas@gmail.com'  # 'MyForum <noreply@example.com>'
 SERVER_EMAIL = DEFAULT_FROM_EMAIL  # For error notifications
 
 # Extend the Spirit installed apps
@@ -36,11 +36,8 @@ INSTALLED_APPS.extend([
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mydatabase',
-        'USER': 'mydatabaseuser',
-        'PASSWORD': 'mypassword',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': 'ubuntult',
+        'USER': 'ubuntult',
     }
 }
 
@@ -48,21 +45,12 @@ DATABASES = {
 # https://www.transifex.com/projects/p/spirit/
 gettext_noop = lambda s: s
 LANGUAGES = [
-    ('de', gettext_noop('German')),
+    ('lt', gettext_noop('Lithuanian')),
     ('en', gettext_noop('English')),
-    ('es', gettext_noop('Spanish')),
-    ('fr', gettext_noop('French')),
-    ('hu', gettext_noop('Hungarian')),
-    ('pl', gettext_noop('Polish')),
-    ('pl-pl', gettext_noop('Poland Polish')),
-    ('ru', gettext_noop('Russian')),
-    ('sv', gettext_noop('Swedish')),
-    ('tr', gettext_noop('Turkish')),
-    ('zh-hans', gettext_noop('Simplified Chinese')),
 ]
 
 # Default language
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'lt'
 
 # Keep templates in memory
 del TEMPLATES[0]['APP_DIRS']
@@ -74,4 +62,4 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
 ]
 
 # Append the MD5 hash of the file’s content to the filename
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
