@@ -8,6 +8,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 import spirit.urls
+import ubuntult.urls
 
 # Override admin login for security purposes
 from django.contrib.auth.decorators import login_required
@@ -19,6 +20,7 @@ urlpatterns = [
     # url(r'^$', 'example.views.home', name='home'),
     # url(r'^example/', include('example.foo.urls')),
 
+    url(r'^', include(ubuntult.urls)),
     url(r'^', include(spirit.urls)),
 
     # Uncomment the admin/doc line below to enable admin documentation:

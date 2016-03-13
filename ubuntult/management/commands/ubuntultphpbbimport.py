@@ -6,6 +6,7 @@ import html
 
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
+from django.contrib.auth.hashers import make_password, is_password_usable
 from django.db.models.signals import post_save
 
 from spirit.topic.models import Topic
@@ -15,6 +16,9 @@ from spirit.core.utils.markdown import Markdown
 from spirit.core.utils.markdown.utils.emoji import emojis
 from spirit.user.models import UserProfile
 from spirit.user.signals import update_or_create_user_profile
+from spirit.category.admin.forms import CategoryForm
+
+from ubuntult.models import PhpBBForumRefs, PhpBBTopicRefs
 
 User = get_user_model()
 
@@ -25,11 +29,21 @@ def import_categories(metadata, conn):
     Category.objects.all().delete()
 
     for row in conn.execute(forums.select()):
-        category = Category.objects.create(
-            pk=row.forum_id,
-            title=row.forum_name,
-            description=row.forum_desc,
+        form = CategoryForm(data={
+            'parent': None,
+            'title': row.forum_name,
+            'description': row.forum_desc,
+            'is_global': True,
+            'is_closed': False,
+            'is_removed': False,
+        })
+        category = form.save()
+
+        PhpBBForumRefs.objects.create(
+            category=category,
+            phpbb_forum_id=row.forum_id,
         )
+
         yield row.forum_id, category
 
 
@@ -151,10 +165,43 @@ def import_users(metadata, conn):
         yield row.user_user_id, user
 
 
+def create_ubuntultbot_user():
+    try:
+        return User.objects.get(username='ubuntultbot')
+    except User.DoesNotExist:
+        pass
+
+    user = User.objects.create(
+        password=make_password(None),
+        username='ubuntultbot',
+        email='no-reply@ubuntu.lt',
+        last_login=None,
+        is_active=True,
+        is_staff=False,
+        is_superuser=False,
+    )
+    assert is_password_usable(user.password) is False
+
+    UserProfile.objects.create(
+        user=user,
+        location='',
+        last_seen=None,
+        last_ip=None,
+        timezone='UTC',
+        is_administrator=False,
+        is_moderator=False,
+        is_verified=True,
+        topic_count=0,
+        comment_count=0,
+    )
+
+    return user
+
+
 def import_topics(metadata, conn, forums, users):
     topics = sa.Table('phpbb_topics', metadata, autoload=True)
 
-    query = sa.select([topics], topics.c.topic_status != 2)
+    query = sa.select([topics], sa.and_(topics.c.topic_status != 2, topics.c.forum_id == 4))
 
     total = conn.execute(
         sa.select([sa.func.count('*')], topics.c.topic_status != 2)
@@ -163,8 +210,7 @@ def import_topics(metadata, conn, forums, users):
     for row in tqdm.tqdm(conn.execute(query), total=total):
         user = users[row.topic_poster]
         category = forums[row.forum_id]
-
-        yield row, Topic.objects.create(
+        topic = Topic.objects.create(
             user=user,
             category=category,
             title=html.unescape(row.topic_title),
@@ -177,6 +223,14 @@ def import_topics(metadata, conn, forums, users):
             view_count=row.topic_views,
             comment_count=row.topic_replies,
         )
+
+        PhpBBTopicRefs.objects.create(
+            topic=topic,
+            phpbb_forum_id=row.forum_id,
+            phpbb_topic_id=row.topic_id,
+        )
+
+        yield row, topic
 
 
 def bbcode_emoji(bbcode):
@@ -431,24 +485,60 @@ def import_topic_posts(metadata, conn, users, topic, topicrow):
             modified_count=row.post_edit_count,
         )
 
+    text = '\n'.join([
+        'Tema perkelta iš https://legacy.ubuntu.lt/forum/viewtopic.php?f={forum_id}&t={topic_id}'
+    ]).format(forum_id=topicrow.forum_id, topic_id=topicrow.topic_id)
+    html = Markdown().render(text)  # noqa
+    Comment.objects.create(
+        user=users['bot'],
+        topic=topic,
+        comment=text,
+        comment_html=html,
+        date=datetime.datetime.now(),
+        is_modified=False,
+        ip_address=None,
+        modified_count=0,
+    )
+
 
 class Command(BaseCommand):
     help = 'Import ubuntu.lt data from phpbb.'
 
     def handle(self, *args, **options):
+        self.stdout.write('importing ubuntu.lt phpbb forum data')
         post_save.disconnect(update_or_create_user_profile, sender=User, dispatch_uid='spirit.user.signals')
 
+        self.stdout.write('connecting to database...')
         engine = sa.create_engine('mysql+pymysql://root@/ubuntult?charset=utf8')
         metadata = sa.MetaData(engine)
         conn = engine.connect()
 
         topics = sa.Table('phpbb_topics', metadata, autoload=True)
 
-        forums = dict(import_categories(metadata, conn))
-        users = dict(import_users(metadata, conn))
+        PhpBBTopicRefs.objects.all().delete()
 
+        self.stdout.write('importing categories...')
+        forums = dict(import_categories(metadata, conn))
+        self.stdout.write('importing users...')
+        # users = dict(import_users(metadata, conn))
+        create_ubuntultbot_user()
+
+        class FakeUser(object):
+            def __init__(self, user, bot):
+                self.user = user
+                self.bot = bot
+
+            def __getitem__(self, key):
+                if key == 'bot':
+                    return self.bot
+                else:
+                    return self.user
+
+        users = FakeUser(User.objects.get(username='sirex'), User.objects.get(username='ubuntultbot'))
+
+        self.stdout.write('importing topics...')
         total = conn.execute(
-            sa.select([sa.func.count('*')]).select_from(topics)
+            sa.select([sa.func.count('*')], sa.and_(topics.c.topic_status != 2, topics.c.forum_id == 4)).select_from(topics)
         ).scalar()
 
         for topicrow, topic in tqdm.tqdm(import_topics(metadata, conn, forums, users), total=total):
