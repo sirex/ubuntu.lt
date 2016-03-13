@@ -11,6 +11,9 @@ from django.db.models.signals import post_save
 
 from spirit.topic.models import Topic
 from spirit.comment.models import Comment
+from spirit.comment.poll.models import CommentPoll, PollMode
+from spirit.comment.poll.models import CommentPollChoice
+from spirit.comment.poll.models import CommentPollVote
 from spirit.category.models import Category
 from spirit.core.utils.markdown import Markdown
 from spirit.core.utils.markdown.utils.emoji import emojis
@@ -204,7 +207,7 @@ def import_topics(metadata, conn, forums, users):
     query = sa.select([topics], sa.and_(topics.c.topic_status != 2, topics.c.forum_id == 4))
 
     total = conn.execute(
-        sa.select([sa.func.count('*')], topics.c.topic_status != 2)
+        sa.select([sa.func.count('*')], sa.and_(topics.c.topic_status != 2, topics.c.forum_id == 4))
     ).scalar()
 
     for row in tqdm.tqdm(conn.execute(query), total=total):
@@ -447,6 +450,78 @@ class Env(object):
         }
 
 
+def import_topic_polls(metadata, conn, users, topic, topicrow):
+    poll = sa.Table('phpbb_poll_options', metadata, autoload=True)
+    votes = sa.Table('phpbb_poll_votes', metadata, autoload=True)
+
+    query = sa.select([poll], poll.c.topic_id == topicrow.topic_id)
+
+    options = []
+    for row in conn.execute(query):
+        options.append({
+            'id': row.poll_option_id,
+            'text': row.poll_option_text,
+            'total': row.poll_option_total,
+        })
+
+    if options:
+        text = '\n'.join(['%d. %s' % (i, x['text']) for i, x in enumerate(options, 1)])
+        text = '\n'.join([
+            '[poll name=1 min=1 max=%d close=%dd]' % (topicrow.poll_max_options, (topicrow.poll_length or 7)),
+            '# %s' % topicrow.poll_title,
+            text,
+            '[/poll]',
+        ])
+
+        user = users[topicrow.topic_poster]
+
+        markdown = Markdown()
+        html = markdown.render(text)  # noqa
+
+        comment = Comment.objects.create(
+            user=user,
+            topic=topic,
+            comment=text,
+            comment_html=html,
+            date=datetime.datetime.fromtimestamp(topicrow.topic_time) - datetime.timedelta(seconds=1),
+            is_modified=0,
+            ip_address=None,
+            modified_count=0,
+        )
+
+        instance = CommentPoll.objects.create(
+            comment=comment,
+            name='1',
+            title=topicrow.poll_title,
+            mode=PollMode.DEFAULT,
+            choice_min=1,
+            choice_max=topicrow.poll_max_options,
+            close_at=comment.date + datetime.timedelta(days=(topicrow.poll_length or 7)),
+            created_at=comment.date,
+        )
+
+        choices = {}
+        for i, option in enumerate(options, 1):
+            choice = CommentPollChoice.objects.create(
+                poll=instance,
+                number=i,
+                description=option['text'],
+                vote_count=option['total'],
+            )
+            choices[option['id']] = choice
+
+        query = sa.select([votes], sa.and_(
+            votes.c.topic_id == topicrow.topic_id,
+            votes.c.poll_option_id.in_([x['id'] for x in options])
+        ))
+        for i, row in enumerate(conn.execute(query), 1):
+            CommentPollVote.objects.create(
+                voter=users[row.vote_user_id],
+                choice=choices[row.poll_option_id],
+                created_at=datetime.datetime.fromtimestamp(topicrow.topic_time) + datetime.timedelta(seconds=i),
+            )
+
+
 def import_topic_posts(metadata, conn, users, topic, topicrow):
     env = Env(metadata, conn)
     env.topic = topic
@@ -455,6 +530,8 @@ def import_topic_posts(metadata, conn, users, topic, topicrow):
     posts = sa.Table('phpbb_posts', metadata, autoload=True)
 
     query = sa.select([posts], posts.c.topic_id == topicrow.topic_id)
+
+    import_topic_polls(metadata, conn, users, topic, topicrow)
 
     for row in conn.execute(query):
         env.postrow = row
@@ -516,25 +593,13 @@ class Command(BaseCommand):
         topics = sa.Table('phpbb_topics', metadata, autoload=True)
 
         PhpBBTopicRefs.objects.all().delete()
+        CommentPollVote.objects.all().delete()
 
         self.stdout.write('importing categories...')
         forums = dict(import_categories(metadata, conn))
         self.stdout.write('importing users...')
-        # users = dict(import_users(metadata, conn))
-        create_ubuntultbot_user()
-
-        class FakeUser(object):
-            def __init__(self, user, bot):
-                self.user = user
-                self.bot = bot
-
-            def __getitem__(self, key):
-                if key == 'bot':
-                    return self.bot
-                else:
-                    return self.user
-
-        users = FakeUser(User.objects.get(username='sirex'), User.objects.get(username='ubuntultbot'))
+        users = dict(import_users(metadata, conn))
+        users['bot'] = create_ubuntultbot_user()
 
         self.stdout.write('importing topics...')
         total = conn.execute(
