@@ -8,7 +8,7 @@
 
 from __future__ import unicode_literals
 
-from .base import *
+from .base import *  # noqa
 
 
 DEBUG = False
@@ -23,7 +23,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "35135gsdfg5sd3g5e35e1rg3w5r1g51313")
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ['demo.ubuntu.lt', ]
 
-DEFAULT_FROM_EMAIL = 'sirexas@gmail.com'  # 'MyForum <noreply@example.com>'
+DEFAULT_FROM_EMAIL = 'no-reply@ubuntu.lt'  # 'MyForum <noreply@example.com>'
 SERVER_EMAIL = DEFAULT_FROM_EMAIL  # For error notifications
 
 # Extend the Spirit installed apps
