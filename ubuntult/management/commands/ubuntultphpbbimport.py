@@ -209,10 +209,10 @@ def create_ubuntultbot_user():
 def import_topics(metadata, conn, forums, users):
     topics = sa.Table('phpbb_topics', metadata, autoload=True)
 
-    query = sa.select([topics], sa.and_(topics.c.topic_status != 2, topics.c.forum_id == 4))
+    query = sa.select([topics], topics.c.topic_status != 2)
 
     total = conn.execute(
-        sa.select([sa.func.count('*')], sa.and_(topics.c.topic_status != 2, topics.c.forum_id == 4))
+        sa.select([sa.func.count('*')], topics.c.topic_status != 2)
     ).scalar()
 
     for row in tqdm.tqdm(conn.execute(query), total=total):
@@ -623,7 +623,7 @@ class Command(BaseCommand):
 
         self.stdout.write('importing topics...')
         total = conn.execute(
-            sa.select([sa.func.count('*')], sa.and_(topics.c.topic_status != 2, topics.c.forum_id == 4)).select_from(topics)
+            sa.select([sa.func.count('*')], topics.c.topic_status != 2).select_from(topics)
         ).scalar()
 
         for topicrow, topic in tqdm.tqdm(import_topics(metadata, conn, forums, users), total=total):
