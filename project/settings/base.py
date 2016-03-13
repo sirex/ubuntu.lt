@@ -20,9 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 # Extend the Spirit installed apps.
 # Check out the spirit.settings.py so you do not end up with duplicated apps.
-INSTALLED_APPS.extend([
+INSTALLED_APPS = [
     'ubuntult',
-])
+] + INSTALLED_APPS
 
 # same here, check out the spirit.settings.py
 MIDDLEWARE_CLASSES.extend([
