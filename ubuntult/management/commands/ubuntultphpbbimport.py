@@ -3,11 +3,15 @@ import tqdm
 import datetime
 import sqlalchemy as sa
 import html
+import hashlib
+import requests
+import os.path
 
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password, is_password_usable
 from django.db.models.signals import post_save
+from django.conf import settings
 
 from spirit.topic.models import Topic
 from spirit.comment.models import Comment
@@ -15,6 +19,7 @@ from spirit.comment.poll.models import CommentPoll, PollMode
 from spirit.comment.poll.models import CommentPollChoice
 from spirit.comment.poll.models import CommentPollVote
 from spirit.category.models import Category
+from spirit.core.utils import mkdir_p
 from spirit.core.utils.markdown import Markdown
 from spirit.core.utils.markdown.utils.emoji import emojis
 from spirit.user.models import UserProfile
@@ -339,6 +344,18 @@ class Context(object):
         else:
             return '![](%s)' % self.text
 
+    def _upload_file(self, name, url):
+        resp = requests.get(url)
+        file_hash = hashlib.md5(resp.content).hexdigest()
+        hashed_name = '%s%s' % (file_hash, os.path.splitext(name)[1].lower())
+        upload_to = os.path.join('spirit', 'images', str(self.env.users[self.env.postrow.poster_id].pk))
+        uploaded_url = os.path.join(settings.MEDIA_URL, upload_to, hashed_name)
+        media_path = os.path.join(settings.MEDIA_ROOT, upload_to)
+        mkdir_p(media_path)
+        with open(os.path.join(media_path, hashed_name), 'wb') as f:
+            f.write(resp.content)
+        return uploaded_url
+
     def render_attachment(self):
         attachments = self.env.tables['attachments']
 
@@ -356,7 +373,8 @@ class Context(object):
             # print('attachment error: post_msg_id = %s and in_message = %s\n%s' % (self.env.postrow.post_id, param, self.text))
             return ''
 
-        url = 'http://www.ubuntu.lt/forum/download/file.php?id=%s' % row.attach_id
+        url = 'https://ubuntu.lt/forum/download/file.php?id=%s' % row.attach_id
+        url = self._upload_file(row.real_filename, url)
 
         if row.mimetype.startswith('image/'):
             return '![%s](%s)' % (row.real_filename, url)
@@ -444,6 +462,7 @@ class Env(object):
         self.topic = None
         self.topicrow = None
         self.postrow = None
+        self.users = None
 
         self.tables = {
             'attachments': sa.Table('phpbb_attachments', metadata, autoload=True),
@@ -526,6 +545,7 @@ def import_topic_posts(metadata, conn, users, topic, topicrow):
     env = Env(metadata, conn)
     env.topic = topic
     env.topicrow = topicrow
+    env.users = users
 
     posts = sa.Table('phpbb_posts', metadata, autoload=True)
 
