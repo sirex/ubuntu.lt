@@ -1,6 +1,6 @@
 from .prod import *  # noqa
 
-ALLOWED_HOSTS = ['demo.ubuntu.lt', ]
+ALLOWED_HOSTS = ['demo.ubuntu.lt']
 
 DATABASES = {
     'default': {
