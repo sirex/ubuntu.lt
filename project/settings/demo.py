@@ -9,3 +9,5 @@ DATABASES = {
         'USER': 'ubuntult',
     }
 }
+
+WSGI_APPLICATION = 'project.wsgi.demo.application'

@@ -41,3 +41,5 @@ CACHES.update({
 })
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+WSGI_APPLICATION = 'project.wsgi.dev.application'
