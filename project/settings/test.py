@@ -8,7 +8,7 @@
 
 from __future__ import unicode_literals
 
-from .base import *
+from .base import *  # noqa
 
 SECRET_KEY = "TEST"
 
@@ -18,12 +18,10 @@ INSTALLED_APPS.extend([
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db_test.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'ubuntult',
     }
 }
-
-ROOT_URLCONF = 'example.project.urls'
 
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.MD5PasswordHasher',
