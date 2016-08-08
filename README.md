@@ -4,12 +4,11 @@ Assuming you use virtualenv, follow these steps to download and run the
 Spirit example application in this directory:
 
 
-    $ git clone https://github.com/nitely/Spirit.git
-    $ cd Spirit
-    $ virtualenv venv
-    $ source ./venv/bin/activate
-    $ pip install .
-    $ cd example
+    $ git clone https://github.com/sirex/ubuntu.lt.git
+    $ cd ubuntu.lt
+    $ virtualenv -p /usr/bin/python3 venv
+    $ source venv/bin/activate
+    $ pip install -r requirements.txt
     $ python manage.py spiritinstall
     $ python manage.py runserver
 
