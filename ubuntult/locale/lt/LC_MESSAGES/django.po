@@ -1,0 +1,1786 @@
+#
+# Translators:
+# sirex <sirexas@gmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Spirit\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-12-15 03:33+0000\n"
+"PO-Revision-Date: 2017-02-23 09:07+0000\n"
+"Last-Translator: sirex <sirexas@gmail.com>\n"
+"Language-Team: Lithuanian (http://www.transifex.com/spirit-project/spirit/"
+"language/lt/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: lt\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
+"%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: forms.py:13
+msgid "site name"
+msgstr "svetainės pavadinmias"
+
+#: forms.py:14
+msgid "site description"
+msgstr "svetainės aprašymas"
+
+#: forms.py:15
+msgid "footer snippet"
+msgstr "puslapio poraštės iškarpa"
+
+#: forms.py:17
+msgid "This gets rendered just before the footer in your template."
+msgstr "Tai bus atvaizduota iš karto prieš puslapio poraštę jūsų šablone."
+
+#: forms.py:18
+msgid "comments per page"
+msgstr "komentarų puslapyje"
+
+#: forms.py:19
+msgid "topics per page"
+msgstr "temų puslapyje"
+
+#: templates/spirit/admin/_side_menu.html:3
+msgid "Show menu"
+msgstr "Rodyti meniu"
+
+#: templates/spirit/admin/_side_menu.html:9
+#: templates/spirit/admin/dashboard.html:5
+#: templates/spirit/admin/dashboard.html:11
+msgid "Dashboard"
+msgstr "Skydelis"
+
+#: templates/spirit/admin/_side_menu.html:10
+msgid "Basic settings"
+msgstr "Pagrindiniai nustatymai"
+
+#: templates/spirit/admin/_side_menu.html:11
+#: templates/spirit/admin/dashboard.html:47
+msgid "Categories"
+msgstr "Kategorijos"
+
+#: templates/spirit/admin/_side_menu.html:12
+#: templates/spirit/admin/dashboard.html:31
+msgid "Topics"
+msgstr "Temos"
+
+#: templates/spirit/admin/_side_menu.html:13
+msgid "Users"
+msgstr "Naudotojai"
+
+#: templates/spirit/admin/_side_menu.html:14
+#: templates/spirit/admin/dashboard.html:43
+msgid "Flags"
+msgstr "Pranešimai"
+
+#: templates/spirit/admin/config_basic.html:5
+#: templates/spirit/admin/config_basic.html:11
+msgid "Basic Settings"
+msgstr "Pagrindiniai nustatymai"
+
+#: templates/spirit/admin/config_basic.html:17
+msgid "Save"
+msgstr "Saugoti"
+
+#: templates/spirit/admin/dashboard.html:14
+msgid "Software"
+msgstr "Programinė įranga"
+
+#: templates/spirit/admin/dashboard.html:17
+msgid "Installed"
+msgstr "Įdiegta"
+
+#: templates/spirit/admin/dashboard.html:18
+msgid "Latest"
+msgstr "Naujausia"
+
+#: templates/spirit/admin/dashboard.html:22
+msgid "Statistics"
+msgstr "Statistika"
+
+#: templates/spirit/admin/dashboard.html:27
+msgid "Members"
+msgstr "Nariai"
+
+#: templates/spirit/admin/dashboard.html:35
+msgid "Comments"
+msgstr "Komentarai"
+
+#: templates/spirit/admin/dashboard.html:39
+msgid "Likes"
+msgstr "Patinka"
+
+#: views.py:30
+msgid "Settings updated!"
+msgstr "Nustatymai atnaujinti!"
+
+#: forms.py:35
+msgid ""
+"The category you are updating can not have a parent since it has childrens"
+msgstr "Kategorija, kurią atnaujinate, negali turėti tėvo, nes turi vaikų"
+
+#: templates/spirit/category/admin/create.html:5
+#: templates/spirit/category/admin/create.html:9
+msgid "Add Category"
+msgstr "Pridėti kategoriją"
+
+#: templates/spirit/category/admin/index.html:5
+#: templates/spirit/category/admin/index.html:11
+msgid "Category list"
+msgstr "Kategorijų sąrašas"
+
+#: templates/spirit/category/admin/index.html:13
+msgid "Create Category"
+msgstr "Sukurti kategoriją"
+
+#: templates/spirit/category/admin/index.html:29
+#: templates/spirit/category/admin/index.html:44
+msgid "edit"
+msgstr "keisti"
+
+#: templates/spirit/category/admin/update.html:5
+#: templates/spirit/category/admin/update.html:9
+msgid "Update Category"
+msgstr "Atnaujinti kategoriją"
+
+#: views.py:50
+msgid "The category has been updated!"
+msgstr "Kategorija buvo atnaujinta"
+
+#: models.py:16
+msgid "category parent"
+msgstr "tėvinė kategorija"
+
+#: models.py:18
+msgid "title"
+msgstr "antraštė"
+
+#: models.py:20
+msgid "description"
+msgstr "aprašymas"
+
+#: models.py:21
+msgid "global"
+msgstr "globali"
+
+#: models.py:22
+msgid ""
+"Designates whether the topics will bedisplayed in the all-categories list."
+msgstr "Žymi ar temos bus rodomos visų kategorijų sąraše."
+
+#: models.py:24
+msgid "closed"
+msgstr "uždaryta"
+
+#: models.py:25
+msgid "removed"
+msgstr "ištrinta"
+
+#: models.py:26
+msgid "private"
+msgstr "privati"
+
+#: models.py:34
+msgid "category"
+msgstr "kategorija"
+
+#: models.py:35
+msgid "categories"
+msgstr "kategorijos"
+
+#: models.py:23
+msgid "comment bookmark"
+msgstr "komentaro žymė"
+
+#: models.py:24
+msgid "comments bookmarks"
+msgstr "komentarų žymės"
+
+#: templates/spirit/comment/flag/admin/_list.html:9
+msgid "moderate"
+msgstr "moderuoti"
+
+#: templates/spirit/comment/flag/admin/_tabs.html:4
+msgid "Open"
+msgstr "Atidaryti"
+
+#: templates/spirit/comment/flag/admin/_tabs.html:5
+msgid "Closed"
+msgstr "Uždaryta"
+
+#: templates/spirit/comment/flag/admin/closed.html:5
+#: templates/spirit/comment/flag/admin/closed.html:11
+msgid "Closed flags"
+msgstr "Uždaryti pranešimai"
+
+#: templates/spirit/comment/flag/admin/detail.html:5
+#: templates/spirit/comment/flag/admin/detail.html:14
+msgid "Flag"
+msgstr "Pranešimas"
+
+#: templates/spirit/comment/flag/admin/detail.html:10
+msgid "Admin"
+msgstr "Administravimas"
+
+#: templates/spirit/comment/flag/admin/detail.html:18
+msgid "Moderated by"
+msgstr "Moderavo:"
+
+#: templates/spirit/comment/flag/admin/detail.html:30
+msgid "Comment flagged"
+msgstr "Komentaras apie kurį pranešta"
+
+#: templates/spirit/comment/flag/admin/detail.html:54
+msgid "delete"
+msgstr "trinti"
+
+#: templates/spirit/comment/flag/admin/detail.html:61
+msgid "Reporters"
+msgstr "Pranešėjai"
+
+#: templates/spirit/comment/flag/admin/open.html:5
+#: templates/spirit/comment/flag/admin/open.html:11
+msgid "Open flags"
+msgstr "Atviri pranešimai"
+
+#: views.py:27
+msgid "The flag has been moderated!"
+msgstr "Pranešimas buvo moderuotas!"
+
+#: forms.py:32
+msgid "This flag already exists"
+msgstr "Toks pranešimas jau yra"
+
+#: models.py:12
+msgid "Spam"
+msgstr "Šlamštas"
+
+#: models.py:13
+msgid "Other"
+msgstr "Kita"
+
+#: models.py:28
+msgid "comment flag"
+msgstr "praneštas komentaras"
+
+#: models.py:29
+msgid "comments flags"
+msgstr "pranešti komentarai"
+
+#: models.py:41
+msgid "reason"
+msgstr "priežastis"
+
+#: models.py:42
+msgid "body"
+msgstr "turinys"
+
+#: models.py:47
+msgid "flag"
+msgstr "pranešimas"
+
+#: models.py:48
+msgid "flags"
+msgstr "pranešimai"
+
+#: templates/spirit/comment/flag/create.html:5
+#: templates/spirit/comment/flag/create.html:14
+msgid "Report"
+msgstr "Pranešti"
+
+#: templates/spirit/comment/flag/create.html:9
+#, python-format
+msgid "Reporting %(username)s's comment"
+msgstr "Pranešama apie %(username)s komentarą"
+
+#: models.py:13
+msgid "original comment"
+msgstr "originalus komentaras"
+
+#: models.py:15
+msgid "comment html"
+msgstr "komentaro html"
+
+#: models.py:20
+msgid "comment history"
+msgstr "komentaro istorija"
+
+#: models.py:21
+msgid "comments history"
+msgstr "komentarų istorija"
+
+#: templates/spirit/comment/history/detail.html:5
+#: templates/spirit/comment/history/detail.html:11
+msgid "Comment history"
+msgstr "Komentaro istorija"
+
+#: forms.py:30
+msgid "This like already exists"
+msgstr "Šitas \"patinka\" jau egzituoja"
+
+#: models.py:22
+msgid "like"
+msgstr "patinka"
+
+#: models.py:23
+msgid "likes"
+msgstr "patinka"
+
+#: templates/spirit/comment/like/create.html:5
+#: templates/spirit/comment/like/create.html:14
+msgid "Like"
+msgstr "Patinka"
+
+#: templates/spirit/comment/like/create.html:9
+#, python-format
+msgid "Like %(username)s's comment"
+msgstr "Patinka %(username)s komentaras"
+
+#: templates/spirit/comment/like/delete.html:5
+#: templates/spirit/comment/like/delete.html:13
+msgid "Remove like"
+msgstr "Pašalinti \"patinka\""
+
+#: templates/spirit/comment/like/delete.html:9
+#, python-format
+msgid "Remove %(username)s's comment like"
+msgstr "Pašalinti %(username)s komantaro \"patinka\""
+
+#: forms.py:30
+msgid "Write comment..."
+msgstr "Rašykite komentarą..."
+
+#: forms.py:101
+#, python-format
+msgid "Unsupported file format. Supported formats are %s."
+msgstr "Nepalaikomas failo formatas. Palaikomi formatai: %s."
+
+#: models.py:20 models.py:34 models.py:49
+msgid "comment"
+msgstr "komentaras"
+
+#: models.py:21
+msgid "topic moved"
+msgstr "tema perkelta"
+
+#: models.py:22
+msgid "topic closed"
+msgstr "tema uždaryta"
+
+#: models.py:23
+msgid "topic unclosed"
+msgstr "tema atidaryta"
+
+#: models.py:24
+msgid "topic pinned"
+msgstr "tema prisegta"
+
+#: models.py:25
+msgid "topic unpinned"
+msgstr "tema nusegta"
+
+#: models.py:36
+msgid "action"
+msgstr "veiksmas"
+
+#: models.py:42
+msgid "modified count"
+msgstr "keitimų skaičius"
+
+#: models.py:43
+msgid "likes count"
+msgstr "patinka skaičius"
+
+#: models.py:50
+msgid "comments"
+msgstr "komentarai"
+
+#: tags.py:23
+msgid "This topic has been moved"
+msgstr "Ši tema buvo perkelta"
+
+#: tags.py:25
+msgid "This topic has been closed"
+msgstr "Ši tema buvo uždaryta"
+
+#: tags.py:27
+msgid "This topic has been unclosed"
+msgstr "Ši tema buvo atidaryta"
+
+#: tags.py:29
+msgid "This topic has been pinned"
+msgstr "Ši tema buvo prisegta"
+
+#: tags.py:31
+msgid "This topic has been unpinned"
+msgstr "Ši tema buvo nusegta"
+
+#: tags.py:33
+msgid "Unknown topic moderation action"
+msgstr "Nežinomas temos moderavimo veiksmas"
+
+#: templates/spirit/comment/_editor.html:6
+msgid "Bold"
+msgstr "Pastorintas"
+
+#: templates/spirit/comment/_editor.html:7
+msgid "Italic"
+msgstr "Kursyvas"
+
+#: templates/spirit/comment/_editor.html:8
+msgid "List"
+msgstr "Sąrašas"
+
+#: templates/spirit/comment/_editor.html:9
+msgid "URL"
+msgstr "Nuoroda"
+
+#: templates/spirit/comment/_editor.html:10
+msgid "Image"
+msgstr "Paveiksliukas"
+
+#: templates/spirit/comment/_editor.html:11
+msgid "Poll"
+msgstr "Apklausa"
+
+#: templates/spirit/comment/_editor.html:12
+msgid "Preview"
+msgstr "Peržiūra"
+
+#: templates/spirit/comment/_editor.html:32
+#, python-brace-format
+msgid "uploading {image_name}"
+msgstr "įkeliama {image_name}"
+
+#: templates/spirit/comment/_editor.html:35
+msgid "bolded text"
+msgstr "pastorintas tekstas"
+
+#: templates/spirit/comment/_editor.html:36
+msgid "italicised text"
+msgstr "tekstas kursyvu"
+
+#: templates/spirit/comment/_editor.html:37
+msgid "list item"
+msgstr "sąrašo elementas"
+
+#: templates/spirit/comment/_editor.html:38
+msgid "link text"
+msgstr "nuorodos tekstas"
+
+#: templates/spirit/comment/_editor.html:39
+msgid "link url"
+msgstr "nuorodos adresas"
+
+#: templates/spirit/comment/_editor.html:40
+msgid "image text"
+msgstr "paveiksliuko tekstas"
+
+#: templates/spirit/comment/_editor.html:41
+msgid "image url"
+msgstr "paveiksliuko adresas"
+
+#: templates/spirit/comment/_editor.html:42
+msgid "Title"
+msgstr "Antraštė"
+
+#: templates/spirit/comment/_editor.html:43
+msgid "Description"
+msgstr "Apibūdinimas"
+
+#: templates/spirit/comment/_form.html:17
+#: templates/spirit/comment/publish.html:18
+#: templates/spirit/comment/update.html:18
+msgid "Publish"
+msgstr "Skelbti"
+
+#: templates/spirit/comment/_render_list.html:50
+msgid "report"
+msgstr "pranešti"
+
+#: templates/spirit/comment/_render_list.html:53
+msgid "share"
+msgstr "dalintis"
+
+#: templates/spirit/comment/_render_list.html:57
+#: templates/spirit/comment/_render_list.html:139
+msgid "remove like"
+msgstr "nebepatinka"
+
+#: templates/spirit/comment/_render_list.html:71
+msgid "quote"
+msgstr "cituoti"
+
+#: templates/spirit/comment/_render_list.html:72
+msgid "reply"
+msgstr "atsakyti"
+
+#: templates/spirit/comment/_render_list.html:79
+msgid "close"
+msgstr "uždaryti"
+
+#: templates/spirit/comment/_render_list.html:110
+msgid "This comment was deleted"
+msgstr "Šis komentaras buvo ištrintas"
+
+#: templates/spirit/comment/_render_list.html:118
+msgid "undelete"
+msgstr "atstatyti"
+
+#: templates/spirit/comment/moderate.html:5
+#: templates/spirit/comment/moderate.html:9
+msgid "Moderate comment"
+msgstr "Moderuoti komentarą"
+
+#: templates/spirit/comment/moderate.html:14
+msgid "Apply"
+msgstr "Taikyti"
+
+#: templates/spirit/comment/publish.html:5
+msgid "Publish comment"
+msgstr "Skelbti komentarą"
+
+#: templates/spirit/comment/publish.html:9
+msgid "Publishing comment on"
+msgstr "Skelbiamas komentaras"
+
+#: templates/spirit/comment/update.html:5
+#: templates/spirit/comment/update.html:9
+msgid "Edit comment"
+msgstr "Keisti komentarą"
+
+#: forms.py:31 forms.py:37
+msgid "Poll choices"
+msgstr "Apklausos variantai"
+
+#: forms.py:63
+#, python-format
+msgid "Too many selected choices. Limit is %s"
+msgstr "Pasirinkta per daug variantų. Galima rinktis tik %s"
+
+#: forms.py:69
+#, python-format
+msgid "Too few selected choices. Minimum is %s"
+msgstr "Pasirinkta per mažai variantų. Reikia pasirinkti bent %s"
+
+#: forms.py:79
+msgid "This poll is closed"
+msgstr "Ši apklausa uždaryta."
+
+#: models.py:31
+msgid "name"
+msgstr "pavadinimas"
+
+#: models.py:33
+msgid "choice min"
+msgstr "mažiausiai variantų"
+
+#: models.py:34
+msgid "choice max"
+msgstr "daugiausiai variantų"
+
+#: models.py:35
+msgid "mode"
+msgstr "veiksena"
+
+#: models.py:36
+msgid "auto close at"
+msgstr "automatiškai uždaryti"
+
+#: models.py:45
+msgid "comment poll"
+msgstr "komentaras apklausa"
+
+#: models.py:46
+msgid "comments polls"
+msgstr "komentarai apklausos"
+
+#: models.py:133
+msgid "number"
+msgstr "skaičius"
+
+#: models.py:134
+msgid "choice description"
+msgstr "variantų aprašymas"
+
+#: models.py:135
+msgid "vote count"
+msgstr "balsų skaičius"
+
+#: models.py:143
+msgid "poll choice"
+msgstr "apklausos variantas"
+
+#: models.py:144
+msgid "poll choices"
+msgstr "apklausos variantai"
+
+#: models.py:215
+msgid "poll vote"
+msgstr "apklausos balsas"
+
+#: models.py:216
+msgid "poll votes"
+msgstr "apklausos balsai"
+
+#: templates/spirit/comment/poll/_form.html:23
+#, python-format
+msgid "Closes on %(date)s."
+msgstr "Bus uždaryta %(date)s."
+
+#: templates/spirit/comment/poll/_form.html:27
+#, python-format
+msgid "You must select %(choice_min)s choices."
+msgstr "Turite pasirinkti bent %(choice_min)s variantus."
+
+#: templates/spirit/comment/poll/_form.html:29
+#, python-format
+msgid "You may select up to %(choice_max)s choices."
+msgstr "Galite pasirinkti ne daugiau kaip %(choice_max)s variantus."
+
+#: templates/spirit/comment/poll/_form.html:31
+#, python-format
+msgid ""
+"You may select no less than %(choice_min)s and no more than %(choice_max)s "
+"choices."
+msgstr "Galite pasirinkti nuo %(choice_min)s iki %(choice_max)s variantų."
+
+#: templates/spirit/comment/poll/_form.html:35
+msgid "Results will be available when the poll is closed."
+msgstr "Apklausos rezultatus pamatysite, kai apklausa bus uždaryta."
+
+#: templates/spirit/comment/poll/_form.html:41
+msgid "Vote"
+msgstr "Balsas"
+
+#: templates/spirit/comment/poll/_form.html:45
+msgid "Show results"
+msgstr "Rodyti rezultatus"
+
+#: templates/spirit/comment/poll/_form.html:52
+#: templates/spirit/comment/poll/_results.html:39
+msgid "open"
+msgstr "atidaryti"
+
+#: templates/spirit/comment/poll/_results.html:15
+#, python-format
+msgid "%(choice)s, %(percentage)s%%"
+msgstr "%(choice)s, %(percentage)s%%"
+
+#: templates/spirit/comment/poll/_results.html:17
+msgid "View voters"
+msgstr "Rodyti balsavusius"
+
+#: templates/spirit/comment/poll/_results.html:27
+msgid "Votes"
+msgstr "Balsai"
+
+#: templates/spirit/comment/poll/_results.html:32
+msgid "Show vote choices"
+msgstr "Rodyti balsavimo variantus"
+
+#: templates/spirit/comment/poll/_static.html:25
+#, python-format
+msgid ""
+"Name: %(poll_name)s, choice selection: from %(choice_min)s up to "
+"%(choice_max)s, mode: %(mode)s, close at: %(close_at)s"
+msgstr ""
+"Pavadinimas: %(poll_name)s, variantų pasirinkimas: nuo %(choice_min)s iki "
+"%(choice_max)s, veiksena: %(mode)s, uždaroma: %(close_at)s"
+
+#: templates/spirit/comment/poll/_static.html:29
+#, python-format
+msgid ""
+"Name: %(poll_name)s, choice selection: from %(choice_min)s up to "
+"%(choice_max)s, mode: %(mode)s"
+msgstr ""
+"Pavadinimas: %(poll_name)s, variantų pasirinkimas: nuo %(choice_min)s iki "
+"%(choice_max)s, veiksena: %(mode)s"
+
+#: templates/spirit/comment/poll/voters.html:5
+#: templates/spirit/comment/poll/voters.html:10
+#, python-format
+msgid "Voters for %(choice_description)s"
+msgstr "Balsavo už %(choice_description)s"
+
+#: tags/time.py:33
+msgid "now"
+msgstr "dabar"
+
+#: tags/time.py:37
+#, python-format
+msgid "%(count)ss"
+msgstr "%(count)ss"
+
+#: tags/time.py:41
+#, python-format
+msgid "%(count)sm"
+msgstr "%(count)sm"
+
+#: tags/time.py:44
+#, python-format
+msgid "%(count)sh"
+msgstr "%(count)sv"
+
+#: templates/403.html:10
+msgid "You do not have sufficient permissions to access this page"
+msgstr "Neturite reikiamų teisių, kad pasiekti šį puslapį"
+
+#: templates/404.html:10
+msgid "what you are looking for is gone..."
+msgstr "to ko ieškote jau nebėra..."
+
+#: templates/spirit/_base.html:33
+#, python-brace-format
+msgid "{user} has mention you on {topic}"
+msgstr "{user} paminėjo jus {topic} temoje"
+
+#: templates/spirit/_base.html:34
+#, python-brace-format
+msgid "{user} has commented on {topic}"
+msgstr "{user} pateikė komentarą {topic} temoje"
+
+#: templates/spirit/_base.html:35
+msgid "Show all"
+msgstr "Rodyti viską"
+
+#: templates/spirit/_base.html:36
+msgid "No new notifications, yet"
+msgstr "Naujų pranešimų nėra"
+
+#: templates/spirit/_base.html:37
+msgid "unread"
+msgstr "neskaityta"
+
+#: templates/spirit/_header.html:20
+msgid "Profile"
+msgstr "Profilis"
+
+#: templates/spirit/_header.html:22
+msgid "Unread topics"
+msgstr "Neskaitytos temos"
+
+#: templates/spirit/_header.html:23
+msgid "Private topics"
+msgstr "Privačios temos"
+
+#: templates/spirit/_header.html:29
+msgid "Log out"
+msgstr "Atsijungti"
+
+#: templates/spirit/_header.html:42
+msgid "Log in"
+msgstr "Prisijungti"
+
+#: templates/spirit/utils/paginator/_paginator.html:4
+#, python-format
+msgid "Page %(number)s of %(num_pages)s"
+msgstr "Puslapio nr. %(number)s iš %(num_pages)s"
+
+#: templates/spirit/utils/paginator/_paginator.html:8
+msgid "Last"
+msgstr "Paskutinis"
+
+#: templates/spirit/utils/paginator/_paginator.html:10
+msgid "First"
+msgstr "Pirmas"
+
+#: templates/spirit/utils/paginator/_yt_paginator.html:5
+msgid "Page 1 of 1"
+msgstr "Puslapio nr. 1 iš 1"
+
+#: utils/markdown/utils/quote.py:36
+#, python-format
+msgid "@%(username)s said:"
+msgstr "@%(username)s sakė:"
+
+#: utils/ratelimit/decorators.py:25
+#, python-format
+msgid "Too many submissions, wait %(time)s."
+msgstr "Per dažni pateikimai, laukite %(time)s."
+
+#: utils/timezone.py:9
+msgid "(GMT -12:00) Eniwetok, Kwajalein"
+msgstr ""
+
+#: utils/timezone.py:10
+msgid "(GMT -11:00) Midway Island, Samoa"
+msgstr ""
+
+#: utils/timezone.py:11
+msgid "(GMT -10:00) Hawaii"
+msgstr ""
+
+#: utils/timezone.py:12
+msgid "(GMT -9:30) Marquesas Islands"
+msgstr ""
+
+#: utils/timezone.py:13
+msgid "(GMT -9:00) Alaska"
+msgstr ""
+
+#: utils/timezone.py:14
+msgid "(GMT -8:00) Pacific Time (US & Canada)"
+msgstr ""
+
+#: utils/timezone.py:15
+msgid "(GMT -7:00) Mountain Time (US & Canada)"
+msgstr ""
+
+#: utils/timezone.py:16
+msgid "(GMT -6:00) Central Time (US & Canada), Mexico City"
+msgstr ""
+
+#: utils/timezone.py:17
+msgid "(GMT -5:00) Eastern Time (US & Canada), Bogota, Lima"
+msgstr ""
+
+#: utils/timezone.py:18
+msgid "(GMT -4:30) Venezuela"
+msgstr ""
+
+#: utils/timezone.py:19
+msgid "(GMT -4:00) Atlantic Time (Canada), Caracas, La Paz"
+msgstr ""
+
+#: utils/timezone.py:20
+msgid "(GMT -3:00) Brazil, Buenos Aires, Georgetown"
+msgstr ""
+
+#: utils/timezone.py:21
+msgid "(GMT -2:00) Mid-Atlantic"
+msgstr ""
+
+#: utils/timezone.py:22
+msgid "(GMT -1:00) Azores, Cape Verde Islands"
+msgstr ""
+
+#: utils/timezone.py:23
+msgid "(GMT) Western Europe Time, London, Lisbon, Casablanca"
+msgstr ""
+
+#: utils/timezone.py:24
+msgid "(GMT +1:00) Brussels, Copenhagen, Madrid, Paris"
+msgstr ""
+
+#: utils/timezone.py:25
+msgid "(GMT +2:00) Kaliningrad, South Africa"
+msgstr "(GMT +2:00) Vilnius, Helsinkis, Atėnai, Jeruzalė"
+
+#: utils/timezone.py:26
+msgid "(GMT +3:00) Baghdad, Riyadh, Moscow, St. Petersburg"
+msgstr ""
+
+#: utils/timezone.py:27
+msgid "(GMT +4:00) Abu Dhabi, Muscat, Baku, Tbilisi"
+msgstr ""
+
+#: utils/timezone.py:28
+msgid "(GMT +4:30) Afghanistan"
+msgstr ""
+
+#: utils/timezone.py:29
+msgid "(GMT +5:00) Ekaterinburg, Islamabad, Karachi, Tashkent"
+msgstr ""
+
+#: utils/timezone.py:30
+msgid "(GMT +5:30) India, Sri Lanka"
+msgstr ""
+
+#: utils/timezone.py:31
+msgid "(GMT +5:45) Nepal"
+msgstr ""
+
+#: utils/timezone.py:32
+msgid "(GMT +6:00) Almaty, Dhaka, Colombo"
+msgstr ""
+
+#: utils/timezone.py:33
+msgid "(GMT +6:30) Cocos Islands, Myanmar"
+msgstr ""
+
+#: utils/timezone.py:34
+msgid "(GMT +7:00) Bangkok, Hanoi, Jakarta"
+msgstr ""
+
+#: utils/timezone.py:35
+msgid "(GMT +8:00) Beijing, Perth, Singapore, Hong Kong"
+msgstr ""
+
+#: utils/timezone.py:36
+msgid "(GMT +8:45) Australia (Eucla)"
+msgstr ""
+
+#: utils/timezone.py:37
+msgid "(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk"
+msgstr ""
+
+#: utils/timezone.py:38
+msgid "(GMT +9:30) Australia (Northern Territory)"
+msgstr ""
+
+#: utils/timezone.py:39
+msgid "(GMT +10:00) Eastern Australia, Guam, Vladivostok"
+msgstr ""
+
+#: utils/timezone.py:40
+msgid "(GMT +11:00) Magadan, Solomon Islands, New Caledonia"
+msgstr ""
+
+#: utils/timezone.py:41
+msgid "(GMT +11:30) Norfolk Island"
+msgstr ""
+
+#: utils/timezone.py:42
+msgid "(GMT +12:00) Auckland, Wellington, Fiji, Kamchatka"
+msgstr ""
+
+#: forms.py:23
+#, python-format
+msgid "Your search must contain at least %(length)s characters."
+msgstr "Paieškos užklausoje turi būti bent %(length)s simboliai."
+
+#: forms.py:45
+msgid "Filter by"
+msgstr "Filtruoti pagal"
+
+#: templates/spirit/search/_form.html:6 templates/spirit/search/search.html:5
+#: templates/spirit/search/search.html:10
+#: templates/spirit/search/search.html:15
+msgid "Search"
+msgstr "Ieškoti"
+
+#: templates/spirit/search/search.html:19
+msgid "Results"
+msgstr "Rezultatai"
+
+#: templates/spirit/search/search.html:27
+msgid "There are no search results."
+msgstr "Nieko nerastas."
+
+#: templates/spirit/topic/admin/_tabs.html:4
+msgid "Deleted"
+msgstr "Ištrinta"
+
+#: templates/spirit/topic/admin/_tabs.html:6
+msgid "Pinned"
+msgstr "Prilipdyta"
+
+#: templates/spirit/topic/admin/closed.html:5
+#: templates/spirit/topic/admin/closed.html:11
+msgid "Closed topics"
+msgstr "Uždarytos temos"
+
+#: templates/spirit/topic/admin/deleted.html:5
+msgid "Deleted Topics"
+msgstr "Ištrintos temos"
+
+#: templates/spirit/topic/admin/deleted.html:11
+msgid "Deleted topics"
+msgstr "ištrintos temos"
+
+#: templates/spirit/topic/admin/pinned.html:5
+#: templates/spirit/topic/admin/pinned.html:11
+msgid "Pinned topics"
+msgstr "Prilipdytos temos"
+
+#: forms.py:30
+msgid "This favorite already exists"
+msgstr "Šis jau yra tarp mėgiamų"
+
+#: models.py:21
+msgid "favorite"
+msgstr "mėgiamas"
+
+#: models.py:22
+msgid "favorites"
+msgstr "mėgiami"
+
+#: forms.py:26
+msgid "Category"
+msgstr "Kategorija"
+
+#: forms.py:27
+msgid "Chose a category"
+msgstr "Pasirinkite kategoriją"
+
+#: models.py:23
+msgid "date"
+msgstr "data"
+
+#: models.py:24
+msgid "last active"
+msgstr "paskutinis aktyvumas"
+
+#: models.py:26
+msgid "pinned"
+msgstr "prisegta"
+
+#: models.py:27
+msgid "globally pinned"
+msgstr "globaliai prisegta"
+
+#: models.py:31
+msgid "views count"
+msgstr "peržiūrų skaičius"
+
+#: models.py:32
+msgid "comment count"
+msgstr "komentarų skaičius"
+
+#: models.py:38
+msgid "topic"
+msgstr "tema"
+
+#: models.py:39
+msgid "topics"
+msgstr "temos"
+
+#: templates/spirit/topic/_render_list.html:37
+msgid "There are no topics here, yet"
+msgstr "Kol kas temų nėra"
+
+#: templates/spirit/topic/_top_bar.html:8
+#: templates/spirit/topic/_top_bar.html:19
+msgid "All Categories"
+msgstr "Visos kategorijos"
+
+#: templates/spirit/topic/_top_bar.html:17
+msgid "All Subcategories"
+msgstr "Visos pakategorės"
+
+#: templates/spirit/topic/_top_bar.html:27
+#: templates/spirit/topic/_top_bar.html:29
+msgid "Create Topic"
+msgstr "Kurti temą"
+
+#: templates/spirit/topic/active.html:5
+msgid "Latest active topics"
+msgstr "Paskutinės aktyvios temos"
+
+#: templates/spirit/topic/detail.html:10
+msgid "Main"
+msgstr "Pagrindinis"
+
+#: templates/spirit/topic/detail.html:42
+msgid "Select comments to move"
+msgstr "Pažymėkite komentarus perkėlimui"
+
+#: templates/spirit/topic/detail.html:45
+msgid "Undelete topic"
+msgstr "Atstatyti temą"
+
+#: templates/spirit/topic/detail.html:47
+msgid "Delete topic"
+msgstr "Trinti temą"
+
+#: templates/spirit/topic/detail.html:51
+msgid "Open topic"
+msgstr "Atidaryti temą"
+
+#: templates/spirit/topic/detail.html:53
+msgid "Close topic"
+msgstr "Uždaryti temą"
+
+#: templates/spirit/topic/detail.html:57
+msgid "Unpin topic"
+msgstr "Nusegti temą"
+
+#: templates/spirit/topic/detail.html:59
+msgid "Pin topic"
+msgstr "Prisegti temą"
+
+#: templates/spirit/topic/detail.html:63
+msgid "Unpin topic globally"
+msgstr "Nusegti temą globaliai"
+
+#: templates/spirit/topic/detail.html:65
+msgid "Pin topic globally"
+msgstr "Prisegti temą globaliai"
+
+#: templates/spirit/topic/detail.html:74
+msgid "Topic id"
+msgstr "Temos id"
+
+#: templates/spirit/topic/detail.html:76
+msgid "Move"
+msgstr "Perkelti"
+
+#: templates/spirit/topic/detail.html:90
+msgid "Reply"
+msgstr "Atsakyti"
+
+#: templates/spirit/topic/moderate.html:5
+#: templates/spirit/topic/moderate.html:9
+msgid "Moderate topic"
+msgstr "Moderuoti temą"
+
+#: templates/spirit/topic/publish.html:5 templates/spirit/topic/publish.html:21
+msgid "Publish topic"
+msgstr "Skelbti temą"
+
+#: templates/spirit/topic/update.html:5 templates/spirit/topic/update.html:9
+msgid "Update topic"
+msgstr "Atnaujinti temą"
+
+#: templates/spirit/topic/update.html:15
+msgid "Update"
+msgstr "Atnaujinti"
+
+#: forms.py:37
+msgid "This notification already exists"
+msgstr "Šis pranešimas jau yra"
+
+#: forms.py:43
+msgid "You can't subscribe to a topic with no comments"
+msgstr "Negalite prenumeruoti temos, kurioje nėra komentarų"
+
+#: models.py:17
+msgid "Undefined"
+msgstr "Nenurodyta"
+
+#: models.py:18
+msgid "Mention"
+msgstr "Paminėjimas"
+
+#: models.py:19
+msgid "Comment"
+msgstr "Komentaras"
+
+#: models.py:39
+msgid "topic notification"
+msgstr "temos pranešimas"
+
+#: models.py:40
+msgid "topics notification"
+msgstr "temų pranešimai"
+
+#: templates/spirit/topic/notification/_form.html:12
+msgid "Unnotify Me"
+msgstr "Nebesekti"
+
+#: templates/spirit/topic/notification/_form.html:14
+msgid "Notify Me"
+msgstr "Sekti"
+
+#: templates/spirit/topic/notification/_render_list.html:9
+#, python-format
+msgid ""
+"<a href=\"%(url_profile)s\">%(username)s</a> has commented on <a href="
+"\"%(url_topic)s\">%(topic_title)s</a>"
+msgstr ""
+"<a href=\"%(url_profile)s\">%(username)s</a> pasisakė temoje <a href="
+"\"%(url_topic)s\">%(topic_title)s</a>"
+
+#: templates/spirit/topic/notification/_render_list.html:11
+#, python-format
+msgid ""
+"<a href=\"%(url_profile)s\">%(username)s</a> has mention you on <a href="
+"\"%(url_topic)s\">%(topic_title)s</a>"
+msgstr ""
+"<a href=\"%(url_profile)s\">%(username)s</a> paminėjo tave temoje <a href="
+"\"%(url_topic)s\">%(topic_title)s</a>"
+
+#: templates/spirit/topic/notification/_render_list.html:21
+msgid "There are no notifications, yet"
+msgstr "Kol kas pranešimų nėra"
+
+#: templates/spirit/topic/notification/index.html:5
+#: templates/spirit/topic/notification/index.html:9
+msgid "Notifications"
+msgstr "Pranešimai"
+
+#: templates/spirit/topic/notification/index_unread.html:5
+#: templates/spirit/topic/notification/index_unread.html:9
+msgid "Unread notifications"
+msgstr "Neskaityti pranešimai"
+
+#: templates/spirit/topic/notification/index_unread.html:15
+msgid "There are no new notifications"
+msgstr "Nėra naujų pranešimų"
+
+#: templates/spirit/topic/notification/index_unread.html:22
+msgid "Next"
+msgstr "Sekanti"
+
+#: forms.py:28
+msgid "Choice's limit must be greater than zero"
+msgstr "Variantų limitas turi būti didesnis už nulį"
+
+#: forms.py:90
+msgid "There must be 2 or more choices"
+msgstr "Turi būti 2 ar daugiau variantų"
+
+#: models.py:16
+msgid "choice limit"
+msgstr "variantų limitas"
+
+#: models.py:20
+msgid "topic poll"
+msgstr "temos apklausa"
+
+#: models.py:21
+msgid "topics polls"
+msgstr "temų apklausos"
+
+#: models.py:33
+msgid "poll"
+msgstr "apklausa"
+
+#: templates/spirit/topic/poll/close.html:5
+msgid "Poll close or open"
+msgstr "Apklausos atidarymas arba uždarymas"
+
+#: templates/spirit/topic/poll/close.html:11
+msgid "Are you sure you want to open this poll"
+msgstr "Ar tikrai norite atidaryti šią apklausą"
+
+#: templates/spirit/topic/poll/close.html:13
+msgid "Are you sure you want to close this poll"
+msgstr "Ar tikrai norite uždaryti šią apklausą"
+
+#: templates/spirit/topic/poll/close.html:20
+msgid "Close"
+msgstr "Uždaryti"
+
+#: templates/spirit/topic/poll/update.html:5
+#: templates/spirit/topic/poll/update.html:9
+msgid "Update poll"
+msgstr "Atnaujinti apklausą"
+
+#: forms.py:41
+msgid "user1, user2, ..."
+msgstr "dalyvis1, dalyvis2, ..."
+
+#: forms.py:73
+msgid "username"
+msgstr "naudotojo vardas"
+
+#: forms.py:74
+msgid "Invite user"
+msgstr "Pakviesti dalyvį"
+
+#: forms.py:92 forms.py:126
+#, python-format
+msgid "%(username)s is already a participant"
+msgstr "%(username)s jau pakviestas"
+
+#: models.py:25
+msgid "private topic"
+msgstr "uždara tema"
+
+#: models.py:26
+msgid "private topics"
+msgstr "uždaros temos"
+
+#: templates/spirit/topic/private/_invite_form.html:7
+msgid "Invite"
+msgstr "Pakviesti"
+
+#: templates/spirit/topic/private/_top_bar.html:6
+#: templates/spirit/topic/private/_top_bar.html:14
+msgid "Participating in"
+msgstr "Dalyvauja"
+
+#: templates/spirit/topic/private/_top_bar.html:8
+#: templates/spirit/topic/private/_top_bar.html:13
+msgid "Left"
+msgstr "Paliko"
+
+#: templates/spirit/topic/private/_top_bar.html:20
+msgid "Create private topic"
+msgstr "Kurti uždarą temą"
+
+#: templates/spirit/topic/private/delete.html:5
+msgid "Remove user from private topic"
+msgstr "Pašalinti dalyvį iš uždaros temos"
+
+#: templates/spirit/topic/private/delete.html:9
+#, python-format
+msgid "Removing %(username)s's from %(topic_title)s"
+msgstr "Šalinamas %(username)s's iš %(topic_title)s"
+
+#: templates/spirit/topic/private/delete.html:13
+msgid "Remove"
+msgstr "Šalinti"
+
+#: templates/spirit/topic/private/detail.html:17
+msgid "Participants"
+msgstr "Dalyviai"
+
+#: templates/spirit/topic/private/detail.html:33
+msgid "Leave topic"
+msgstr "Palikti temą"
+
+#: templates/spirit/topic/private/index_author.html:5
+msgid "Created private topics"
+msgstr "Sukurtos uždaros temos"
+
+#: templates/spirit/topic/private/index_author.html:15
+msgid "join"
+msgstr "prisijungti"
+
+#: templates/spirit/topic/private/join.html:5
+msgid "Join topic"
+msgstr "Prisijungti prie temos"
+
+#: templates/spirit/topic/private/join.html:10
+#, python-format
+msgid "Do you want to join %(topic_title)s?"
+msgstr "Ar norite prisijungti prie %(topic_title)s?"
+
+#: templates/spirit/topic/private/join.html:18
+msgid "Join"
+msgstr "Prisijungti"
+
+#: templates/spirit/topic/private/publish.html:5
+msgid "Publish a private topic"
+msgstr "Atverti uždarą temą"
+
+#: templates/spirit/topic/private/publish.html:9
+msgid "Publish private topic"
+msgstr "Atverti uždarą temą"
+
+#: models.py:22
+msgid "topic unread"
+msgstr "neskaityta tema"
+
+#: models.py:23
+msgid "topics unread"
+msgstr "neskaitytos temos"
+
+#: templates/spirit/topic/unread/index.html:5
+#: templates/spirit/topic/unread/index.html:9
+msgid "Unread topics replies"
+msgstr "Neskaitytų temų atsakymai"
+
+#: templates/spirit/user/admin/_tabs.html:5
+#: templates/spirit/user/admin/admins.html:5
+#: templates/spirit/user/admin/admins.html:11
+msgid "Admins"
+msgstr "Administratoriai"
+
+#: templates/spirit/user/admin/_tabs.html:6
+#: templates/spirit/user/admin/mods.html:5
+#: templates/spirit/user/admin/mods.html:11
+msgid "Mods"
+msgstr "Moderatoriai"
+
+#: templates/spirit/user/admin/_tabs.html:7
+msgid "Unactive"
+msgstr "Neaktyvūs"
+
+#: templates/spirit/user/admin/edit.html:5
+#: templates/spirit/user/admin/edit.html:9
+msgid "Edit user"
+msgstr "Keisti naudotoją"
+
+#: templates/spirit/user/admin/index.html:5
+#: templates/spirit/user/admin/index.html:11
+msgid "User list"
+msgstr "Vartotojų sąrašas"
+
+#: templates/spirit/user/admin/unactive.html:5
+#: templates/spirit/user/admin/unactive.html:11
+msgid "Unactive Users"
+msgstr "Neaktyvūs naudotojai"
+
+#: views.py:30
+msgid "This profile has been updated!"
+msgstr "Šis profilis buvo atnaujintas!"
+
+#: forms.py:19
+msgid "Email confirmation"
+msgstr "El. pašto patvirtinimas"
+
+#: forms.py:22
+msgid "Enter the same email as above, for verification."
+msgstr "Įveskite tą patį el. pašto adresą kaip viršuje, kad patvirtintumėte."
+
+#: forms.py:25
+msgid "Password"
+msgstr "Slaptažodis"
+
+#: forms.py:26
+msgid "Leave blank"
+msgstr "Palikti tuščią"
+
+#: forms.py:41
+msgid "Do not fill this field."
+msgstr "Nepildyti šio lauko."
+
+#: forms.py:53
+msgid "The username is taken."
+msgstr "Naudotojo vardas užimtas."
+
+#: forms.py:66
+msgid "The two email fields didn't match."
+msgstr "Du el. pašto laukai nesutampa."
+
+#: forms.py:79
+msgid "Username or Email"
+msgstr "Naudotojo vardas arba el. paštas"
+
+#: forms.py:83
+msgid "The password is not valid."
+msgstr "Slaptažodis neteisingas."
+
+#: forms.py:115
+#, python-format
+msgid "No account matches %(username)s."
+msgstr "%(username)s neatitinka jokios paskyros."
+
+#: forms.py:125
+msgid "Email"
+msgstr "El. paštas"
+
+#: forms.py:138
+msgid "The provided email does not exists."
+msgstr "Pateiktas el. pašto adresas neegzistuoja."
+
+#: forms.py:146
+msgid "This account is verified, try logging-in."
+msgstr "Še paskyra patvirtinta, bandykite prisijungti."
+
+#: templates/spirit/user/auth/activation_resend.html:5
+#: templates/spirit/user/auth/activation_resend.html:9
+#: templates/spirit/user/auth/login.html:23
+msgid "Resend activation email"
+msgstr "Pakartotinai išsiųsti aktyvavimo el. laišką"
+
+#: templates/spirit/user/auth/activation_resend.html:16
+msgid "Resend email"
+msgstr "Pakartotinai išsiųsti el. laišką"
+
+#: templates/spirit/user/auth/login.html:5
+#: templates/spirit/user/auth/login.html:9
+#: templates/spirit/user/auth/login.html:16
+msgid "Login"
+msgstr "Prisijungti"
+
+#: templates/spirit/user/auth/login.html:21
+msgid "Create an account"
+msgstr "Kurti paskyra"
+
+#: templates/spirit/user/auth/login.html:22
+msgid "I don't know my password"
+msgstr "Nežinau savo slaptažodžio"
+
+#: templates/spirit/user/auth/logout.html:9
+msgid "Are you sure you want to log out?"
+msgstr "Ar tikrai norite atsijungti?"
+
+#: templates/spirit/user/auth/password_reset_complete.html:7
+#: templates/spirit/user/auth/password_reset_complete.html:11
+msgid "Password change successful"
+msgstr "Slaptažodis pakeistas sėkmingai"
+
+#: templates/spirit/user/auth/password_reset_complete.html:13
+msgid "Continue to login"
+msgstr "Tęsti prisijungimą"
+
+#: templates/spirit/user/auth/password_reset_confirm.html:5
+msgid "Password reset confirmation"
+msgstr "Slaptažodžio atstatymo patvirtinimas"
+
+#: templates/spirit/user/auth/password_reset_confirm.html:11
+msgid "Enter new password"
+msgstr "Įvesti naują slaptažodį"
+
+#: templates/spirit/user/auth/password_reset_confirm.html:21
+msgid "Password reset unsuccessful"
+msgstr "Slaptažodžio atstatymas nesėkmingas"
+
+#: templates/spirit/user/auth/password_reset_confirm.html:23
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used. Please request a new password reset."
+msgstr ""
+"Slaptažodžio atstatymo nuoroda neteisinga, galimai dėl to, kad ji jau buvo "
+"panaudota. Prašome pakartoti slaptažodžio atstatymą iš naujo."
+
+#: templates/spirit/user/auth/password_reset_done.html:5
+#: templates/spirit/user/auth/password_reset_done.html:9
+msgid "Password reset successful"
+msgstr "Slaptažodžio atstatymas sėkmingas"
+
+#: templates/spirit/user/auth/password_reset_done.html:11
+msgid ""
+"We've emailed you instructions for setting your password. You should be "
+"receiving them shortly."
+msgstr ""
+"Išsiuntėme slaptažodžio atstatymo instrukcijas el. paštu. Turėtumėte jas "
+"gauti netrukus."
+
+#: templates/spirit/user/auth/password_reset_done.html:12 views.py:113
+msgid ""
+"If you don't receive an email, please make sure you've entered the address "
+"you registered with, and check your spam folder."
+msgstr ""
+"Jei negaunate el. laiško, prašome įsitikinti ar įvedėte el. pašto adresą, "
+"kuriuo registravotės ir patikrinkite šlamšto katalogą."
+
+#: templates/spirit/user/auth/password_reset_email.html:2
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+"Gavote šį laišką, kadangi pateikėte slaptažodžio atstatymo užklausą savo "
+"paskyrai %(site_name)s svetainėje."
+
+#: templates/spirit/user/auth/password_reset_email.html:4
+msgid "Please go to the following page and choose a new password:"
+msgstr "Prašome eiti į šį puslapį ir pasirinkite naują slaptažodį:"
+
+#: templates/spirit/user/auth/password_reset_email.html:9
+msgid "Thanks for using our site!"
+msgstr "Ačiū, kad naudojatės mūsų svetaine!"
+
+#: templates/spirit/user/auth/password_reset_email.html:11
+#, python-format
+msgid "The %(site_name)s team"
+msgstr "%(site_name)s komanda"
+
+#: templates/spirit/user/auth/password_reset_form.html:5
+#: templates/spirit/user/auth/password_reset_form.html:9
+msgid "Password reset"
+msgstr "Slaptažodžio atstatymas"
+
+#: templates/spirit/user/auth/password_reset_form.html:15
+msgid "Reset my password"
+msgstr "Atstatyti mano slaptažodį"
+
+#: templates/spirit/user/auth/password_reset_subject.txt:2
+#, python-format
+msgid "Password reset on %(site_name)s"
+msgstr "Slaptažodžio atstatymas %(site_name)s svetainėje"
+
+#: templates/spirit/user/auth/register.html:5
+#: templates/spirit/user/auth/register.html:22
+#: templates/spirit/user/auth/register.html:28
+msgid "Register"
+msgstr "Registracija"
+
+#: tests/tests.py:91 tests/tests.py:224
+msgid "User activation"
+msgstr "Naudotojo aktyvavimas"
+
+#: views.py:67
+#, python-format
+msgid ""
+"We have sent you an email to %(email)s so you can activate your account!"
+msgstr ""
+"Išsiuntėme el. laišką %(email)s adresu, kad galėtumėte aktyvuoti savo "
+"paskyrą!"
+
+#: views.py:94
+msgid "Your account has been activated!"
+msgstr "Jūsų paskyra aktyvuota."
+
+#: forms.py:33
+msgid "The email is taken."
+msgstr "El. pašto adresas užimtas."
+
+#: forms.py:59
+msgid "The provided password is incorrect."
+msgstr "Pateiktas slaptažodis neteisingas."
+
+#: forms.py:80
+#, python-format
+msgid "Current time is: %(date)s %(time)s"
+msgstr "Dabar yra %(date)s %(time)s"
+
+#: models.py:16
+msgid "profile"
+msgstr "profilis"
+
+#: models.py:19
+msgid "location"
+msgstr "vieta"
+
+#: models.py:20
+msgid "last seen"
+msgstr "paskutinį kartą matytas"
+
+#: models.py:21
+msgid "last ip"
+msgstr "paskutinis IP"
+
+#: models.py:22
+msgid "time zone"
+msgstr "laiko juosta"
+
+#: models.py:23
+msgid "administrator status"
+msgstr "administratoriaus būsena"
+
+#: models.py:24
+msgid "moderator status"
+msgstr "moderatoriaus būsena"
+
+#: models.py:25
+msgid "verified"
+msgstr "patvirtintas"
+
+#: models.py:26
+msgid ""
+"Designates whether the user has verified his account by email or by other "
+"means. Un-select this to let the user activate his account."
+msgstr ""
+"Žymi ar naudotojas patvirtino savo paskyrą el. paštu ar kitais būdais. "
+"Nuimkite pažymėjimą, kad leistumėte naudotojui aktyvuoti šią paskyrą."
+
+#: models.py:30
+msgid "topic count"
+msgstr "temų skaičius"
+
+#: models.py:34
+msgid "forum profile"
+msgstr "forumo profilis"
+
+#: models.py:35
+msgid "forum profiles"
+msgstr "forumo profiliai"
+
+#: models.py:56
+msgid "user"
+msgstr "naudotojas"
+
+#: models.py:57
+msgid "users"
+msgstr "naudotojai"
+
+#: templates/spirit/user/_profile.html:12
+msgid "Joined at"
+msgstr "Prisijungė"
+
+#: templates/spirit/user/_profile.html:16
+msgid "Seen"
+msgstr "Matytas"
+
+#: templates/spirit/user/_profile.html:22
+msgid "Last IP"
+msgstr "Paskutinis IP"
+
+#: templates/spirit/user/_profile.html:31
+#: templates/spirit/user/profile_update.html:5
+#: templates/spirit/user/profile_update.html:9
+msgid "Preferences"
+msgstr "Nustatymai"
+
+#: templates/spirit/user/_profile.html:35
+msgid "Private Message"
+msgstr "Privati Žinutė"
+
+#: templates/spirit/user/_render_comments_list.html:36
+msgid "There are no comments here, yet"
+msgstr "Kol kas komentarų nėra"
+
+#: templates/spirit/user/activation_email.html:2
+#, python-format
+msgid "You're receiving this email because you registered at %(site_name)s."
+msgstr "Gavote šį laišką, kadangi užsiregistravote %(site_name)s svetainėje."
+
+#: templates/spirit/user/activation_email.html:4
+msgid "Please go to the following link to activate your account:"
+msgstr "Prašome sekti šia nuoroda, kad aktyvuotumėte savo paskyrą:"
+
+#: templates/spirit/user/email_change_email.html:2
+#, python-format
+msgid ""
+"You're receiving this because you changed your user email at %(site_name)s."
+msgstr ""
+"Gavote šį laišką, kadangi pakeitėte savo el. pašto adresą %(site_name)s "
+"svetainėje."
+
+#: templates/spirit/user/email_change_email.html:4
+msgid "Please go to the following link to confirm your email change:"
+msgstr "Sekite šia nuoroda, kad patvirtintumėte pakeistą el. pašto adresą:"
+
+#: templates/spirit/user/menu.html:7
+msgid "User menu"
+msgstr "Naudotojo meniu"
+
+#: templates/spirit/user/menu.html:11
+msgid "Menu"
+msgstr "Meniu"
+
+#: templates/spirit/user/notification_email.html:2
+#, python-format
+msgid "You have a new notification at %(site_name)s."
+msgstr "Turite naują pranešimą %(site_name)s svetainėje."
+
+#: templates/spirit/user/notification_email.html:4
+msgid "Please go to the following link to read the comment:"
+msgstr "Sekite šią nuorodą, kad perskaitytumėte komentarą:"
+
+#: templates/spirit/user/notification_email.html:8
+msgid ""
+"If you don't want to keep receiving notifications, you can deactivate them "
+"on your profile preferences."
+msgstr ""
+"Jei nenorite gauti pranešimų, galite išjungti juos savo profilio "
+"nustatymuose."
+
+#: templates/spirit/user/profile_email_change.html:5
+#: templates/spirit/user/profile_email_change.html:9 tests.py:435 tests.py:694
+#: utils/email.py:58
+msgid "Email change"
+msgstr "El. pašto keitimas"
+
+#: templates/spirit/user/profile_email_change.html:15
+msgid "Change my email"
+msgstr "Keisti mano el. paštą"
+
+#: templates/spirit/user/profile_password_change.html:5
+#: templates/spirit/user/profile_password_change.html:9
+msgid "Password change"
+msgstr "Slaptažodžio keitimas"
+
+#: templates/spirit/user/profile_password_change.html:15
+msgid "Change my password"
+msgstr "Keisti mano slaptažodį"
+
+#: templates/spirit/user/profile_update.html:16
+msgid "Change password"
+msgstr "Keisti slaptažodį"
+
+#: templates/spirit/user/profile_update.html:18
+msgid "Avatar"
+msgstr "Atvaizdas"
+
+#: templates/spirit/user/profile_update.html:19
+msgid "Change avatar"
+msgstr "Keisti atvaizdą"
+
+#: templates/spirit/user/profile_update.html:20
+msgid "Go to gravatar.com and use your current email to change it"
+msgstr ""
+"Apsilankykite gravatar.com ir naudodami esamą el. paštą pasikeiskite jį"
+
+#: utils/email.py:67
+#, python-format
+msgid "New notification: %(topic_name)s"
+msgstr "Naujas pranešimas: %(topic_name)s"
+
+#: views.py:35
+msgid "Your profile has been updated!"
+msgstr "Jūsų profilis atnaujintas!"
+
+#: views.py:57
+msgid "Your password has been changed!"
+msgstr "Jūsų slaptažodis pakeistas!"
+
+#: views.py:74
+msgid "We have sent you an email so you can confirm the change!"
+msgstr "Išsiuntėme jums el. laišką, kad patvirtintumėte pakeitimą!"
+
+#: views.py:96
+msgid "Your email has been changed!"
+msgstr "Jūsų el. paštas buvo pakeistas!"
+
+#: views.py:99
+msgid "Sorry, we were not able to change your email."
+msgstr "Atsiprašome, negalime pakeisti jūsų el. pašto."
