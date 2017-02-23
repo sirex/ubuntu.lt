@@ -23,7 +23,7 @@ How to run tests
 
 You can run tests using following command::
 
-  py.test --nomigrations --reuse-db ubuntult/tests
+  py.test ubuntult/tests
 
 If you want faster test runs, when working on a feature, run tests using
 following command::
