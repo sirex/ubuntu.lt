@@ -1,8 +1,6 @@
 from lxml import etree
 
 from spirit.core.tests import utils
-from spirit.comment.flag.models import Flag, CommentFlag
-from spirit.comment.flag.forms import FlagForm
 
 
 

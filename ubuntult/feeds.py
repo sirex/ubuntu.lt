@@ -2,7 +2,7 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.contrib.syndication.views import Feed
 
-from spirit.comment.models import Comment
+from spirit.comment.models import Comment, COMMENT
 
 
 class LatestCommentsFeed(Feed):
@@ -13,8 +13,9 @@ class LatestCommentsFeed(Feed):
     def items(self):
         return (
             Comment.objects.
-            select_related('user', 'topic', 'topic__category').
+            filter(action=COMMENT).
             exclude(topic__category_id=settings.ST_TOPIC_PRIVATE_CATEGORY_PK).
+            select_related('user', 'topic', 'topic__category').
             order_by('-date')[:64]
         )
 
