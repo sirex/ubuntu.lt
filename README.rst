@@ -18,6 +18,19 @@ example application in this directory::
 Visit http://127.0.0.1:8000/
 
 
+How to run tests
+----------------
+
+You can run tests using following command::
+
+  py.test --nomigrations --reuse-db ubuntult/tests
+
+If you want faster test runs, when working on a feature, run tests using
+following command::
+
+  py.test --nomigrations --reuse-db ubuntult/tests
+
+
 Translations
 ============
 

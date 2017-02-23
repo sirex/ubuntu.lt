@@ -1,5 +1,7 @@
 from django.db import models
 
+import ubuntult.signals  # noqa
+
 
 class PhpBBForumRefs(models.Model):
     category = models.ForeignKey('spirit_category.Category')
