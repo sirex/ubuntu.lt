@@ -41,17 +41,6 @@ DATABASES = {
     }
 }
 
-# These are all the languages Spirit provides.
-# https://www.transifex.com/projects/p/spirit/
-gettext_noop = lambda s: s
-LANGUAGES = [
-    ('lt', gettext_noop('Lithuanian')),
-    ('en', gettext_noop('English')),
-]
-
-# Default language
-LANGUAGE_CODE = 'lt'
-
 # Keep templates in memory
 del TEMPLATES[0]['APP_DIRS']
 TEMPLATES[0]['OPTIONS']['loaders'] = [
