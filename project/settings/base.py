@@ -7,6 +7,7 @@ from __future__ import unicode_literals
 
 import os
 
+from django.utils.translation import ugettext_lazy as _
 from spirit.settings import *  # noqa
 
 # You may override or extend spirit settings below...
@@ -54,6 +55,10 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
+
+LANGUAGES = [
+    ('lt', _('Lietuvių')),
+]
 
 LANGUAGE_CODE = 'lt'
 
