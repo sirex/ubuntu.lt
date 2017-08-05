@@ -30,7 +30,7 @@ ALLOWED_HOSTS = ['127.0.0.1', ]
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ubuntult',
+        'NAME': 'ubuntulttest',
     }
 }
 
@@ -43,3 +43,5 @@ CACHES.update({
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 WSGI_APPLICATION = 'project.wsgi.dev.application'
+
+ST_TOPIC_PRIVATE_CATEGORY_PK = 1
