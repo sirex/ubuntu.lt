@@ -30,7 +30,10 @@ ALLOWED_HOSTS = ['127.0.0.1', ]
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': '127.0.0.1',
         'NAME': 'ubuntult',
+        'USER': 'postgres',
+        'PASSWORD': 'secret',
     }
 }
 
@@ -38,6 +41,11 @@ CACHES.update({
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
     },
+    'st_rate_limit': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'spirit_rl_cache',
+        'TIMEOUT': None
+    }
 })
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

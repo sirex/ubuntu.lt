@@ -26,11 +26,8 @@ ALLOWED_HOSTS = ['ubuntu.lt', 'www.ubuntu.lt']
 DEFAULT_FROM_EMAIL = 'no-reply@ubuntu.lt'  # 'MyForum <noreply@example.com>'
 SERVER_EMAIL = DEFAULT_FROM_EMAIL  # For error notifications
 
-# Extend the Spirit installed apps
-# Check out the .base.py file for more examples
-INSTALLED_APPS.extend([
-    # 'my_app1',
-])
+# Email sending timeout
+EMAIL_TIMEOUT = 20  # Default is None (infinite)
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
@@ -41,16 +38,7 @@ DATABASES = {
     }
 }
 
-# Keep templates in memory
-del TEMPLATES[0]['APP_DIRS']
-TEMPLATES[0]['OPTIONS']['loaders'] = [
-    ('django.template.loaders.cached.Loader', (
-        'django.template.loaders.filesystem.Loader',
-        'django.template.loaders.app_directories.Loader',
-    )),
-]
-
 # Append the MD5 hash of the file’s content to the filename
-# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 WSGI_APPLICATION = 'project.wsgi.prod.application'

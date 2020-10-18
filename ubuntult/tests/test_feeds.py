@@ -15,4 +15,4 @@ def test_latest_comments_feed(app):
 
     assert rss.xpath('//item/title/text()') == [topic.title]
     assert rss.xpath('//item/category/text()') == [category.title]
-    assert rss.xpath('//item/link/text()') == ['http://localhost:80/comment/%s/find/' % comment.pk]
+    assert rss.xpath('//item/link/text()') == ['http://testserver/comment/%s/find/' % comment.pk]

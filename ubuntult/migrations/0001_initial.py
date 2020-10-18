@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, serialize=False, primary_key=True, verbose_name='ID')),
                 ('phpbb_forum_id', models.IntegerField(db_index=True)),
                 ('phpbb_topic_id', models.IntegerField(db_index=True)),
-                ('topic', models.ForeignKey(to='spirit_topic.Topic')),
+                ('topic', models.ForeignKey(to='spirit_topic.Topic', on_delete=models.CASCADE)),
             ],
         ),
     ]

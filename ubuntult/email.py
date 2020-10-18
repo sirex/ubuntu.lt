@@ -1,5 +1,9 @@
+import logging
+
 from django.core.mail import send_mail
 from django.conf import settings
+
+logger = logging.getLogger(__name__)
 
 
 def send_email(to, subject, message):

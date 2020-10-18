@@ -1,0 +1,5 @@
+django-webtest
+lxml
+pip-tools
+pytest
+pytest-django

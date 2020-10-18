@@ -1,7 +1,7 @@
 from textwrap import dedent
 
 from django.core import mail
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from spirit.core.tests import utils
 from spirit.comment.flag.models import Flag, CommentFlag
