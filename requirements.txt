@@ -10,6 +10,7 @@ django-haystack==3.0      # via django-spirit
 django-infinite-scroll-pagination==1.1.0  # via django-spirit
 django-spirit[files]==0.12.1  # via -r requirements.in
 django==3.1.4             # via django-haystack, django-spirit
+gunicorn==20.0.4          # via -r requirements.in
 mistune==0.8.4            # via django-spirit
 olefile==0.46             # via django-spirit
 passlib==1.7.4            # via -r requirements.in
@@ -20,3 +21,6 @@ pytz==2020.5              # via django, django-spirit
 sqlparse==0.4.1           # via django
 tqdm==4.55.0              # via -r requirements.in
 whoosh==2.7.4             # via django-spirit
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools

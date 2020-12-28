@@ -14,6 +14,7 @@ django-infinite-scroll-pagination==1.1.0  # via django-spirit
 django-spirit[files]==0.12.1  # via -r requirements.in
 django-webtest==1.9.7     # via -r requirements-dev.in
 django==3.1.4             # via django-haystack, django-spirit
+gunicorn==20.0.4          # via -r requirements.in
 iniconfig==1.1.1          # via pytest
 lxml==4.6.2               # via -r requirements-dev.in
 mistune==0.8.4            # via django-spirit
@@ -42,3 +43,4 @@ whoosh==2.7.4             # via django-spirit
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
+# setuptools
