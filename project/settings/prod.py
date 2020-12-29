@@ -18,7 +18,7 @@ ADMINS = (('sirex', 'sirexas@gmail.com'), )
 
 # Secret key generator: https://djskgen.herokuapp.com/
 # You should set your key as an environ variable
-SECRET_KEY = os.environ.get("SECRET_KEY", "35135gsdfg5sd3g5e35e1rg3w5r1g51313")
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ['ubuntu.lt', 'www.ubuntu.lt']
