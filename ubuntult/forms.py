@@ -1,4 +1,5 @@
 from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV3
 from django import forms
 from spirit.user.auth.forms import RegistrationForm as SpiritRegistrationForm
 
@@ -13,4 +14,4 @@ class ViewTopicParams(forms.Form):
 
 
 class RegistrationForm(SpiritRegistrationForm):
-    captcha = ReCaptchaField()
+    captcha = ReCaptchaField(widget=ReCaptchaV3)
