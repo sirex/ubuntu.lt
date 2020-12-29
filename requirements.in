@@ -3,3 +3,4 @@ psycopg2-binary
 passlib
 tqdm
 gunicorn
+django-recaptcha

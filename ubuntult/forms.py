@@ -1,4 +1,6 @@
+from captcha.fields import ReCaptchaField
 from django import forms
+from spirit.user.auth.forms import RegistrationForm as SpiritRegistrationForm
 
 
 class ViewForumParams(forms.Form):
@@ -8,3 +10,7 @@ class ViewForumParams(forms.Form):
 class ViewTopicParams(forms.Form):
     f = forms.IntegerField(min_value=0)
     t = forms.IntegerField(min_value=0)
+
+
+class RegistrationForm(SpiritRegistrationForm):
+    captcha = ReCaptchaField()

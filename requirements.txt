@@ -8,8 +8,9 @@ asgiref==3.3.1            # via django
 django-djconfig==0.10.0   # via django-spirit
 django-haystack==3.0      # via django-spirit
 django-infinite-scroll-pagination==1.1.0  # via django-spirit
+django-recaptcha==2.0.6   # via -r requirements.in
 django-spirit[files]==0.12.1  # via -r requirements.in
-django==3.1.4             # via django-haystack, django-spirit
+django==3.1.4             # via django-haystack, django-recaptcha, django-spirit
 gunicorn==20.0.4          # via -r requirements.in
 mistune==0.8.4            # via django-spirit
 olefile==0.46             # via django-spirit

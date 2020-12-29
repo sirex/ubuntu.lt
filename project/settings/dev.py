@@ -53,3 +53,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 WSGI_APPLICATION = 'project.wsgi.dev.application'
 
 ST_TOPIC_PRIVATE_CATEGORY_PK = 1
+
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+

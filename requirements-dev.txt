@@ -11,9 +11,10 @@ click==7.1.2              # via pip-tools
 django-djconfig==0.10.0   # via django-spirit
 django-haystack==3.0      # via django-spirit
 django-infinite-scroll-pagination==1.1.0  # via django-spirit
+django-recaptcha==2.0.6   # via -r requirements.in
 django-spirit[files]==0.12.1  # via -r requirements.in
 django-webtest==1.9.7     # via -r requirements-dev.in
-django==3.1.4             # via django-haystack, django-spirit
+django==3.1.4             # via django-haystack, django-recaptcha, django-spirit
 gunicorn==20.0.4          # via -r requirements.in
 iniconfig==1.1.1          # via pytest
 lxml==4.6.2               # via -r requirements-dev.in
