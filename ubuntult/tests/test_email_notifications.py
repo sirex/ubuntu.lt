@@ -5,8 +5,6 @@ from django.urls import reverse
 
 from spirit.core.tests import utils
 from spirit.comment.flag.models import Flag, CommentFlag
-from spirit.comment.flag.forms import FlagForm
-
 
 
 def test_flag_create(app):

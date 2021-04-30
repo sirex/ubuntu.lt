@@ -4,23 +4,23 @@
 #
 #    pip-compile --output-file=requirements.txt requirements.in
 #
-asgiref==3.3.1            # via django
+asgiref==3.3.4            # via django
 django-djconfig==0.10.0   # via django-spirit
 django-haystack==3.0      # via django-spirit
 django-infinite-scroll-pagination==1.1.0  # via django-spirit
 django-recaptcha==2.0.6   # via -r requirements.in
-django-spirit[files]==0.12.1  # via -r requirements.in
-django==3.1.4             # via django-haystack, django-recaptcha, django-spirit
-gunicorn==20.0.4          # via -r requirements.in
+django-spirit[files]==0.12.2  # via -r requirements.in
+django==3.1.8             # via django-haystack, django-recaptcha, django-spirit
+gunicorn==20.1.0          # via -r requirements.in
 mistune==0.8.4            # via django-spirit
 olefile==0.46             # via django-spirit
 passlib==1.7.4            # via -r requirements.in
 pillow==8.0.1             # via django-spirit
 psycopg2-binary==2.8.6    # via -r requirements.in
 python-magic==0.4.15      # via django-spirit
-pytz==2020.5              # via django, django-spirit
+pytz==2021.1              # via django, django-spirit
 sqlparse==0.4.1           # via django
-tqdm==4.55.0              # via -r requirements.in
+tqdm==4.60.0              # via -r requirements.in
 whoosh==2.7.4             # via django-spirit
 
 # The following packages are considered to be unsafe in a requirements file:
