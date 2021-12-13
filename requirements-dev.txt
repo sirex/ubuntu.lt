@@ -4,45 +4,47 @@
 #
 #    pip-compile --output-file=requirements-dev.txt requirements-dev.in requirements.in
 #
-asgiref==3.3.4            # via django
-attrs==20.3.0             # via pytest
-beautifulsoup4==4.9.3     # via webtest
-click==7.1.2              # via pip-tools
-django-djconfig==0.10.0   # via django-spirit
-django-haystack==3.0      # via django-spirit
-django-infinite-scroll-pagination==1.1.0  # via django-spirit
-django-recaptcha==2.0.6   # via -r requirements.in
-django-spirit[files]==0.12.2  # via -r requirements.in
-django-webtest==1.9.7     # via -r requirements-dev.in
-django==3.1.8             # via django-haystack, django-recaptcha, django-spirit
-gunicorn==20.1.0          # via -r requirements.in
-iniconfig==1.1.1          # via pytest
-lxml==4.6.3               # via -r requirements-dev.in
-mistune==0.8.4            # via django-spirit
-olefile==0.46             # via django-spirit
-packaging==20.9           # via pytest
-passlib==1.7.4            # via -r requirements.in
-pep517==0.10.0            # via pip-tools
-pillow==8.0.1             # via django-spirit
-pip-tools==6.1.0          # via -r requirements-dev.in
-pluggy==0.13.1            # via pytest
-psycopg2-binary==2.8.6    # via -r requirements.in
-py==1.10.0                # via pytest
-pyparsing==2.4.7          # via packaging
-pytest-django==4.2.0      # via -r requirements-dev.in
-pytest==6.2.3             # via -r requirements-dev.in, pytest-django
-python-magic==0.4.15      # via django-spirit
-pytz==2021.1              # via django, django-spirit
-six==1.15.0               # via webtest
-soupsieve==2.2.1          # via beautifulsoup4
-sqlparse==0.4.1           # via django
-toml==0.10.2              # via pep517, pytest
-tqdm==4.60.0              # via -r requirements.in
-waitress==2.0.0           # via webtest
-webob==1.8.7              # via webtest
-webtest==2.0.35           # via django-webtest
-whoosh==2.7.4             # via django-spirit
+asgiref==3.4.1
+    # via django
+django==3.1.14
+    # via
+    #   django-haystack
+    #   django-recaptcha
+    #   django-spirit
+django-djconfig==0.10.0
+    # via django-spirit
+django-haystack==3.0
+    # via django-spirit
+django-infinite-scroll-pagination==1.1.0
+    # via django-spirit
+django-recaptcha==2.0.6
+    # via -r requirements.in
+django-spirit[files]==0.12.2
+    # via -r requirements.in
+gunicorn==20.1.0
+    # via -r requirements.in
+mistune==0.8.4
+    # via django-spirit
+olefile==0.46
+    # via django-spirit
+passlib==1.7.4
+    # via -r requirements.in
+pillow==8.0.1
+    # via django-spirit
+psycopg2-binary==2.9.2
+    # via -r requirements.in
+python-magic==0.4.15
+    # via django-spirit
+pytz==2021.3
+    # via
+    #   django
+    #   django-spirit
+sqlparse==0.4.2
+    # via django
+tqdm==4.62.3
+    # via -r requirements.in
+whoosh==2.7.4
+    # via django-spirit
 
 # The following packages are considered to be unsafe in a requirements file:
-# pip
 # setuptools
